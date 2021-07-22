@@ -1,5 +1,5 @@
 import { color as makeColor } from 'csx';
-import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import createMuiTheme from '@material-ui/core/styles/createTheme';
 
 export const fade = (color: string, fadeTo: number) => makeColor(color).fade(fadeTo).toString();
 

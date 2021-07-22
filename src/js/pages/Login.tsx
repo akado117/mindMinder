@@ -8,15 +8,15 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import Link from '@material-ui/core/Link';
-import { color } from 'CommunityApp/styles/theme';
-import { headingOne, textBase } from 'CommunityApp/styles/typography';
-import { flex, horizontalRule, columnStack, center } from 'CommunityApp/styles/layout';
-import WindowHeightContainer from 'CommunityApp/layout/WindowHeightContainer';
+import { color } from './styles/theme';
+import { headingOne, textBase } from './styles/typography';
+import { flex, horizontalRule, columnStack, center } from './styles/layout';
+import WindowHeightContainer from './layout/WindowHeightContainer';
 import { LogoMark } from 'components/Logos';
-import { path } from 'CommunityApp/routes/Routes';
-import { useAppDispatch, useAppSelector } from 'CommunityApp/hooks/storeHooks';
-import { login } from 'CommunityApp/api/sessions';
-import { APIError, baseURL } from 'CommunityApp/api/client';
+import { path } from './routes/Routes';
+import { useAppDispatch, useAppSelector } from './hooks/storeHooks';
+import { login } from './api/sessions';
+import { APIError, baseURL } from './api/client';
 
 interface FormState {
   email: string;

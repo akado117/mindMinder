@@ -1,4 +1,4 @@
-import { AppDispatch } from 'CommunityApp/store/store';
+import { AppDispatch } from './store/store';
 import {
   setProperties,
   setLoading,
@@ -15,8 +15,8 @@ import {
   PropertyUnitsApiResponse,
   GuestyListingsApiResponse,
   UnitsExternalSourcesApiResponse
-} from 'CommunityApp/store/propertySlice';
-import api, { Data } from 'CommunityApp/api/client';
+} from './store/propertySlice';
+import api, { Data } from './api/client';
 
 export const getProperties = () => {
   return (dispatch: AppDispatch) => {

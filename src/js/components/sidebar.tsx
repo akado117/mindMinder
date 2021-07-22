@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import clsx from 'clsx';
 import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core/styles';
-import { color } from 'CommunityApp/styles/theme';
+import { color } from './styles/theme';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';

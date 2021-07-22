@@ -1,13 +1,13 @@
 import React, { ReactNode } from 'react';
 import clsx from 'clsx';
 import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core/styles';
-import { color } from 'CommunityApp/styles/theme';
+import { color } from './styles/theme';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import logoHeader from 'logos/logo_header.jpg';
-import Sidebar from 'CommunityApp/components/sidebar';
-import AvatarMenu from 'CommunityApp/components/AvatarMenu';
+import Sidebar from './components/sidebar';
+import AvatarMenu from './components/AvatarMenu';
 
 const drawerWidth = 240;
 

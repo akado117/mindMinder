@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Admin } from 'api/types';
-import { unwrapError, APIError } from 'CommunityApp/api/client';
+import { unwrapError, APIError } from './api/client';
 
 type AuthState = {
   isAuthenticated: boolean;

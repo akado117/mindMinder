@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
-import { rowStack, spaceBetween } from 'CommunityApp/styles/layout';
-import { color2 } from 'CommunityApp/styles/theme';
-import { useAppSelector, useAppDispatch } from 'CommunityApp/hooks/storeHooks';
-import { getBookings, bookingParamsFromState } from 'CommunityApp/api/bookings';
-import { setTab, setDates, convertDateStringToDate, setBookingError } from 'CommunityApp/store/bookingSlice';
-import DatePicker from 'CommunityApp/components/DatePicker/DatePicker';
-import Table from 'CommunityApp/components/BookingsTable';
+import { rowStack, spaceBetween } from './styles/layout';
+import { color2 } from './styles/theme';
+import { useAppSelector, useAppDispatch } from './hooks/storeHooks';
+import { getBookings, bookingParamsFromState } from './api/bookings';
+import { setTab, setDates, convertDateStringToDate, setBookingError } from './store/bookingSlice';
+import DatePicker from './components/DatePicker/DatePicker';
+import Table from './components/BookingsTable';
 
 type Styles = Record<string, string>;
 

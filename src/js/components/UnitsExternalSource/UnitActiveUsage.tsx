@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { isAfter, isWithinRange } from 'date-fns';
 import { createStyles, makeStyles, useTheme } from '@material-ui/core/styles';
-import { Unit, UnitsExternalSource } from 'CommunityApp/store/propertySlice';
+import { Unit, UnitsExternalSource } from './store/propertySlice';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 

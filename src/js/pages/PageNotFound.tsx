@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from 'react';
 import { useHistory } from 'react-router';
-import { color } from 'CommunityApp/styles/theme';
-import WindowHeightContainer from 'CommunityApp/layout/WindowHeightContainer';
-import PageNotFoundBody from 'CommunityApp/components/PageNotFoundBody';
-import { path } from 'CommunityApp/routes/Routes';
+import { color } from './styles/theme';
+import WindowHeightContainer from './layout/WindowHeightContainer';
+import PageNotFoundBody from './components/PageNotFoundBody';
+import { path } from './routes/Routes';
 
 const PageNotFound: FunctionComponent = () => {
   const history = useHistory();

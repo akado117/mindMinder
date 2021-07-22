@@ -2,9 +2,9 @@ import React, { FunctionComponent } from 'react';
 import { useTheme, makeStyles } from '@material-ui/core/styles';
 import Cityscape from 'illustrations/small-cityscape-night-construction.svg';
 import { LogoMark } from 'components/Logos';
-import { flex } from 'CommunityApp/styles/layout';
-import { buttonSecondary } from 'CommunityApp/styles/button';
-import AppBody from 'CommunityApp/layout/AppBody';
+import { flex } from './styles/layout';
+import { buttonSecondary } from './styles/button';
+import AppBody from './layout/AppBody';
 
 /**
  * @prop positionContent  Display the 404 message and illustration at the top

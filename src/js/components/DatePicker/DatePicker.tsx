@@ -6,9 +6,9 @@ import React, { useState, FunctionComponent } from 'react';
 import { createStyles, makeStyles, useTheme } from '@material-ui/core/styles';
 import Calendar from 'react-calendar';
 import { addDays, isWithinRange, isSameDay } from 'date-fns';
-import { color } from 'CommunityApp/styles/theme';
+import { color } from './styles/theme';
 import RemoveIcon from '@material-ui/icons/Remove';
-import DatePickerViewCard from 'CommunityApp/components/DatePicker/DatePickerViewCard';
+import DatePickerViewCard from './components/DatePicker/DatePickerViewCard';
 
 const useStyles = makeStyles(() =>
   createStyles({

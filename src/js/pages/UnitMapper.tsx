@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
-import { spaceBetween } from 'CommunityApp/styles/layout';
-import { color2 } from 'CommunityApp/styles/theme';
-import { useAppSelector, useAppDispatch } from 'CommunityApp/hooks/storeHooks';
+import { spaceBetween } from './styles/layout';
+import { color2 } from './styles/theme';
+import { useAppSelector, useAppDispatch } from './hooks/storeHooks';
 import {
   getProperties,
   getUnitsForProperty,
@@ -12,7 +12,7 @@ import {
   getUnitSwitchStatus,
   updatePropertyUnit,
   updatePropertyUnitUsageActive
-} from 'CommunityApp/api/properties';
+} from './api/properties';
 import {
   GuestyListing,
   setPropertyError,
@@ -23,10 +23,10 @@ import {
   Unit,
   UnitsExternalSource,
   UnitSwitchStatus
-} from 'CommunityApp/store/propertySlice';
-import UnitsExternalSourceDisplay from 'CommunityApp/components/UnitsExternalSource/UnitExternalSourceDisplay';
-import PageHeader from 'CommunityApp/components/PageHeader';
-import UnitActiveUsage from 'CommunityApp/components/UnitsExternalSource/UnitActiveUsage';
+} from './store/propertySlice';
+import UnitsExternalSourceDisplay from './components/UnitsExternalSource/UnitExternalSourceDisplay';
+import PageHeader from './components/PageHeader';
+import UnitActiveUsage from './components/UnitsExternalSource/UnitActiveUsage';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 

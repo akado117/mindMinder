@@ -1,6 +1,6 @@
-import { flex } from 'CommunityApp/styles/layout';
-import { largeButtonText, smallButtonText } from 'CommunityApp/styles/typography';
-import { color, fade } from 'CommunityApp/styles/theme';
+import { flex } from './styles/layout';
+import { largeButtonText, smallButtonText } from './styles/typography';
+import { color, fade } from './styles/theme';
 
 const ButtonColor = {
   hoverBlue: '#2B7CF9',

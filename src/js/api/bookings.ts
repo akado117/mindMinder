@@ -1,4 +1,4 @@
-import { AppDispatch } from 'CommunityApp/store/store';
+import { AppDispatch } from './store/store';
 import {
   setBookings,
   setLoading,
@@ -8,8 +8,8 @@ import {
   setBookingDetail,
   setBookingError,
   setBooking
-} from 'CommunityApp/store/bookingSlice';
-import api, { Data } from 'CommunityApp/api/client';
+} from './store/bookingSlice';
+import api, { Data } from './api/client';
 
 interface BookingApiReponse {
   bookings: Data[];

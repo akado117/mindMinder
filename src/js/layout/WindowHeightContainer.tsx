@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import useWindowHeight from 'CommunityApp/hooks/useWindowHeight';
+import useWindowHeight from './hooks/useWindowHeight';
 
 /**
  * This container component sets its width and height to the current

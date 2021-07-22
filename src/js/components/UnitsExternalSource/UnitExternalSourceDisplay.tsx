@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { createStyles, makeStyles, useTheme } from '@material-ui/core/styles';
-import { usageTypes, UnitsExternalSource } from 'CommunityApp/store/propertySlice';
+import { usageTypes, UnitsExternalSource } from './store/propertySlice';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';

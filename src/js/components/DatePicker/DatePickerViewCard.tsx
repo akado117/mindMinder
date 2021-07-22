@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import React, { FunctionComponent } from 'react';
 import { createStyles, makeStyles, useTheme } from '@material-ui/core/styles';
 import { format } from 'date-fns';
-import { color } from 'CommunityApp/styles/theme';
+import { color } from './styles/theme';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 

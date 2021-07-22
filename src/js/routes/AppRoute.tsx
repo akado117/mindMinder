@@ -1,11 +1,11 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router';
 import { Route, RouteProps } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from 'CommunityApp/hooks/storeHooks';
-import { setIsAuthenticated, setIsInitialized, setAdmin } from 'CommunityApp/store/authSlice';
-import { path } from 'CommunityApp/routes/Routes';
+import { useAppDispatch, useAppSelector } from './hooks/storeHooks';
+import { setIsAuthenticated, setIsInitialized, setAdmin } from './store/authSlice';
+import { path } from './routes/Routes';
 import LoadingScreen from 'components/LoadingScreen';
-import SidebarLayout from 'CommunityApp/layout/SidebarLayout';
+import SidebarLayout from './layout/SidebarLayout';
 import * as API from 'api/manager';
 
 interface OwnProps {

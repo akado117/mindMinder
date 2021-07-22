@@ -1,11 +1,11 @@
 import React, { FunctionComponent } from 'react';
 import { Switch, Route } from 'react-router';
-import AppRoute from 'CommunityApp/routes/AppRoute';
-import AuthRoute from 'CommunityApp/routes/AuthRoute';
-import Login from 'CommunityApp/pages/Login';
-import PageNotFound from 'CommunityApp/pages/PageNotFound';
-import Bookings from 'CommunityApp/pages/Bookings';
-import UnitMapper from 'CommunityApp/pages/UnitMapper';
+import AppRoute from './routes/AppRoute';
+import AuthRoute from './routes/AuthRoute';
+import Login from './pages/Login';
+import PageNotFound from './pages/PageNotFound';
+import Bookings from './pages/Bookings';
+import UnitMapper from './pages/UnitMapper';
 
 const BASE_PATH = '/community';
 const buildPath = (path: string): string => `${BASE_PATH}${path}`;

@@ -1,7 +1,7 @@
-import { AppDispatch } from 'CommunityApp/store/store';
-import { LoginCredentials, setIsAuthenticated, setAuthError, setAuthLoading } from 'CommunityApp/store/authSlice';
+import { AppDispatch } from './store/store';
+import { LoginCredentials, setIsAuthenticated, setAuthError, setAuthLoading } from './store/authSlice';
 
-import api from 'CommunityApp/api/client';
+import api from './api/client';
 
 export const login = (loginCreds: LoginCredentials) => {
   return (dispatch: AppDispatch) => {

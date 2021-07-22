@@ -1,4 +1,4 @@
-import { color } from 'CommunityApp/styles/theme';
+import { color } from './styles/theme';
 
 export const textBase = {
   fontFamily: 'Helvetica, sans-serif',

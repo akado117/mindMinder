@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
-import authReducer from 'CommunityApp/store/authSlice';
-import booking from 'CommunityApp/store/bookingSlice';
-import property from 'CommunityApp/store/propertySlice';
+import authReducer from './store/authSlice';
+import booking from './store/bookingSlice';
+import property from './store/propertySlice';
 
 const store = configureStore({
   reducer: {

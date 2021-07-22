@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { Data } from 'CommunityApp/api/client';
+import { Data } from './api/client';
 
 export interface PropertyApiResponse {
   properties: Data[];
