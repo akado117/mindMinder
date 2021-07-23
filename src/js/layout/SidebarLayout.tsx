@@ -1,13 +1,12 @@
 import React, { ReactNode } from 'react';
 import clsx from 'clsx';
 import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core/styles';
-import { color } from './styles/theme';
+import { color } from '../styles/theme';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import logoHeader from 'logos/logo_header.jpg';
-import Sidebar from './components/sidebar';
-import AvatarMenu from './components/AvatarMenu';
+import Sidebar from '../components/sidebar';
+import AvatarMenu from '../components/AvatarMenu';
 
 const drawerWidth = 240;
 
@@ -71,15 +70,7 @@ interface SidebarProps {
 const SidebarLayout = (props: SidebarProps) => {
   const theme = useTheme();
   const classes = useStyles(theme);
-  const [isSidebarOpen, setSidebarOpen] = React.useState(false);
-
-  const handleDrawerOpen = () => {
-    setSidebarOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setSidebarOpen(false);
-  };
+  const [isSidebarOpen, _setSidebarOpen] = React.useState(false);
 
   return (
     <div className={classes.root}>
@@ -91,11 +82,10 @@ const SidebarLayout = (props: SidebarProps) => {
         })}
       >
         <Toolbar className={classes.toolbarHeader}>
-          <img src={logoHeader} alt="logo_header" className={classes.appBarHeaderLogo} />
+          <img src="/imgs/logo_word.png" alt="logo_header" className={classes.appBarHeaderLogo} />
           <AvatarMenu containerClass={classes.avatarMenu} />
         </Toolbar>
       </AppBar>
-      <Sidebar handleDrawerOpen={handleDrawerOpen} handleDrawerClose={handleDrawerClose} open={isSidebarOpen} />
       <main className={`${classes.content} ${props.noPadding ? classes.noPadding : ''}`}>
         <div className={classes.toolbar} />
         <div>{props.children}</div>

@@ -14,13 +14,13 @@ import Button from '@material-ui/core/Button';
 import Collapse from '@material-ui/core/Collapse';
 import Popover from '@material-ui/core/Popover';
 import Link from '@material-ui/core/Link';
-import { Booking, BookingState } from './store/bookingSlice';
-import { color2, colorForTag } from './styles/theme';
-import { spaceBetween, columnStack } from './styles/layout';
-import { useAppDispatch } from './hooks/storeHooks';
-import { BookingDetails } from './store/bookingSlice';
-import { updateBookingDetails, updateBooking } from './api/bookings';
-import { guestyHostName } from './api/externalURLS';
+import { Booking, BookingState } from '../store/bookingSlice';
+import { color2, colorForTag } from '../styles/theme';
+import { spaceBetween, columnStack } from '../styles/layout';
+import { useAppDispatch } from '../hooks/storeHooks';
+import { BookingDetails } from '../store/bookingSlice';
+import { updateBookingDetails, updateBooking } from '../api/bookings';
+import { guestyHostName } from '../api/externalURLS';
 import Select from '@material-ui/core/Select';
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {

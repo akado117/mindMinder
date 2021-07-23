@@ -1,4 +1,5 @@
 import { isNull, isUndefined } from 'lodash';
+import { baseAPIURL } from '../../config'
 
 export type Data = Record<string, string | number | boolean | null>;
 type RequestOpts = RequestInit & { body?: string };
@@ -12,8 +13,8 @@ export type APIError = {
   };
 };
 
-export const baseURL = process.env.BASE_API_URL
-  ? `${window.location.protocol}//${process.env.BASE_API_URL}`
+export const baseURL = baseAPIURL
+  ? `${window.location.protocol}//${baseAPIURL}`
   : `${window.location.protocol}//${window.location.host}`;
 
 const communityExtension = '/api/community';

@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
-import { isAfter, isWithinRange } from 'date-fns';
+import { isAfter, isWithinInterval } from 'date-fns';
 import { createStyles, makeStyles, useTheme } from '@material-ui/core/styles';
-import { Unit, UnitsExternalSource } from './store/propertySlice';
+import { Unit, UnitsExternalSource } from '../../store/propertySlice';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
@@ -29,7 +29,7 @@ const activeExternalSource = (unit: Unit) => {
     const endDate = uua.end_date && new Date(uua.end_date);
     const today = new Date();
 
-    if (endDate && isWithinRange(today, startDate, endDate)) {
+    if (endDate && isWithinInterval(today, { start: startDate, end: endDate })) {
       // End date exists and current date is between the start + end
       return true;
     } else if (!endDate && isAfter(today, startDate)) {

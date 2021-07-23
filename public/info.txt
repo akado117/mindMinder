@@ -1,0 +1,4 @@
+Files here cannot be imported into code base
+Files here will not be hashed (cache busted)
+Files here will be served from the root on a production build
+

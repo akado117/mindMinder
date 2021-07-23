@@ -1,14 +1,12 @@
 import 'react-calendar/dist/Calendar.css';
-
-import { format } from 'date-fns';
 import clsx from 'clsx';
 import React, { useState, FunctionComponent } from 'react';
 import { createStyles, makeStyles, useTheme } from '@material-ui/core/styles';
 import Calendar from 'react-calendar';
-import { addDays, isWithinRange, isSameDay } from 'date-fns';
-import { color } from './styles/theme';
+import { addDays, isWithinInterval, isSameDay, format } from 'date-fns';
+import { color } from '../../styles/theme';
 import RemoveIcon from '@material-ui/icons/Remove';
-import DatePickerViewCard from './components/DatePicker/DatePickerViewCard';
+import DatePickerViewCard from '../../components/DatePicker/DatePickerViewCard';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -104,7 +102,7 @@ const DatePickerComponent: FunctionComponent<Props> = ({ handleDateChange, selec
       tileClasses.push(classes.primaryActive, classes.leftBorderCircle);
     } else if (isSameDay(endDate, date)) {
       tileClasses.push(classes.primaryActive, classes.rightBorderCircle);
-    } else if (isWithinRange(date, startDate, endDate)) {
+    } else if (isWithinInterval(date, { start: startDate, end: endDate })) {
       tileClasses.push(classes.betweenSelection);
     } else if (isSameDay(today, date)) {
       tileClasses.push(classes.secondaryActive, classes.fullBorderCircle);

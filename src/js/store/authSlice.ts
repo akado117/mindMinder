@@ -1,6 +1,7 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, current, PayloadAction } from '@reduxjs/toolkit';
 import { Admin } from 'api/types';
-import { unwrapError, APIError } from './api/client';
+import { unwrapError, APIError } from '../api/client';
+import { auth } from '../api/firebase'
 
 type AuthState = {
   isAuthenticated: boolean;
@@ -15,14 +16,16 @@ export interface LoginCredentials {
   password: string;
 }
 
-const IS_AUTHENTICATED_STORAGE_KEY = 'accountAuthenticated';
+// firebase controls this at this time.
+// const IS_AUTHENTICATED_STORAGE_KEY = 'accountAuthenticated';
+// const hydrateIsAuthenticated = () => localStorage.getItem(IS_AUTHENTICATED_STORAGE_KEY) === 'true';
+// const persistIsAuthenticated = (isAuthenticated: boolean) =>
+//   localStorage.setItem(IS_AUTHENTICATED_STORAGE_KEY, isAuthenticated ? 'true' : 'false');
 
-const hydrateIsAuthenticated = () => localStorage.getItem(IS_AUTHENTICATED_STORAGE_KEY) === 'true';
-const persistIsAuthenticated = (isAuthenticated: boolean) =>
-  localStorage.setItem(IS_AUTHENTICATED_STORAGE_KEY, isAuthenticated ? 'true' : 'false');
+const currentUser = auth.currentUser
 
 const initialState: AuthState = {
-  isAuthenticated: hydrateIsAuthenticated(),
+  isAuthenticated: !!currentUser,
   isInitialized: false,
   admin: undefined,
   error: null,
@@ -38,7 +41,6 @@ export const authSlice = createSlice({
       // doesn't actually mutate the state because it uses the Immer library,
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
-      persistIsAuthenticated(action.payload);
       state.isAuthenticated = action.payload;
     },
     setIsInitialized: (state, action: PayloadAction<boolean>) => {

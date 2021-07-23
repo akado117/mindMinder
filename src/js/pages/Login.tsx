@@ -8,15 +8,14 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import Link from '@material-ui/core/Link';
-import { color } from './styles/theme';
-import { headingOne, textBase } from './styles/typography';
-import { flex, horizontalRule, columnStack, center } from './styles/layout';
-import WindowHeightContainer from './layout/WindowHeightContainer';
-import { LogoMark } from 'components/Logos';
-import { path } from './routes/Routes';
-import { useAppDispatch, useAppSelector } from './hooks/storeHooks';
-import { login } from './api/sessions';
-import { APIError, baseURL } from './api/client';
+import { color } from '../styles/theme';
+import { headingOne, textBase } from '../styles/typography';
+import { flex, horizontalRule, columnStack, center } from '../styles/layout';
+import WindowHeightContainer from '../layout/WindowHeightContainer';
+import { path } from '../routes/Routes';
+import { useAppDispatch, useAppSelector } from '../hooks/storeHooks';
+import { login } from '../api/sessions';
+import { APIError, baseURL } from '../api/client';
 
 interface FormState {
   email: string;
@@ -34,7 +33,7 @@ const useStyles = makeStyles({
   container: {
     ...textBase,
     backgroundColor: color.cloud,
-    backgroundImage: 'url(/images/illustrations/cloud.svg)',
+    // backgroundImage: 'url(/images/illustrations/cloud.svg)',
     backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center bottom',
@@ -164,7 +163,6 @@ const Login: FunctionComponent = () => {
     <WindowHeightContainer>
       <div className={classes.container}>
         <Container maxWidth="sm">
-          <LogoMark />
           <Heading classes={classes} />
           <div className={classes.error}>
             <DisplayError error={authState.error} />

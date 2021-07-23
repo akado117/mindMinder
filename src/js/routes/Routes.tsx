@@ -1,27 +1,25 @@
 import React, { FunctionComponent } from 'react';
 import { Switch, Route } from 'react-router';
-import AppRoute from './routes/AppRoute';
-import AuthRoute from './routes/AuthRoute';
-import Login from './pages/Login';
-import PageNotFound from './pages/PageNotFound';
-import Bookings from './pages/Bookings';
-import UnitMapper from './pages/UnitMapper';
+import AppRoute from '../routes/AppRoute';
+import AuthRoute from '../routes/AuthRoute';
+import Login from '../pages/Login';
+import PageNotFound from '../pages/PageNotFound';
 
-const BASE_PATH = '/community';
+const BASE_PATH = '/';
 const buildPath = (path: string): string => `${BASE_PATH}${path}`;
 
 export const path = {
   home: buildPath(''),
-  unitMapper: buildPath('/unit_mapper'),
-  login: '/admin/login'
+  unitMapper: buildPath('test'),
+  login: '/login'
 };
 
 const Routes: FunctionComponent = () => {
   return (
     <Switch>
       <AuthRoute exact path={path.login} component={Login} />
-      <AppRoute exact path={path.home} component={Bookings} />
-      <AppRoute exact path={path.unitMapper} component={UnitMapper} />
+      <AppRoute exact path={path.home} component={() => <div></div>} />
+      <AppRoute exact path={path.unitMapper} component={() => <div></div>} />
       <Route component={PageNotFound} />
     </Switch>
   );

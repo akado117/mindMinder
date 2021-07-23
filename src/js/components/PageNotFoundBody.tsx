@@ -1,10 +1,8 @@
 import React, { FunctionComponent } from 'react';
 import { useTheme, makeStyles } from '@material-ui/core/styles';
-import Cityscape from 'illustrations/small-cityscape-night-construction.svg';
-import { LogoMark } from 'components/Logos';
-import { flex } from './styles/layout';
-import { buttonSecondary } from './styles/button';
-import AppBody from './layout/AppBody';
+import { flex } from '../styles/layout';
+import { buttonSecondary } from '../styles/button';
+import AppBody from '../layout/AppBody';
 
 /**
  * @prop positionContent  Display the 404 message and illustration at the top
@@ -100,7 +98,6 @@ const PageNotFound: FunctionComponent<Props> = (props) => {
   return (
     <AppBody>
       <div className={classes.messageContainer}>
-        <LogoMark height={45} width={71} />
         <h4 className={classes.errorText}>404</h4>
 
         <h1 className={`${classes.primaryText} ${classes.flexContent}`}>
@@ -113,7 +110,6 @@ const PageNotFound: FunctionComponent<Props> = (props) => {
         </h1>
       </div>
       <div className={classes.flexContent}>
-        <Cityscape />
         <div className={classes.buttonContainer}>
           <button className={buttonClass.buttonStyle} onClick={handleReturnHome}>
             Return to Home

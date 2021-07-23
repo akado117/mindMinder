@@ -1,5 +1,5 @@
 import { rem } from 'csx';
-import { Color } from 'styles/base';
+import { Color } from './base';
 
 export const flex = {
   display: 'flex',

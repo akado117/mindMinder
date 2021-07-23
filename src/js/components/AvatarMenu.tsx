@@ -1,11 +1,10 @@
 import React, { FunctionComponent } from 'react';
 import clsx from 'clsx';
 import get from 'lodash/get';
-import * as API from 'api';
 import { createStyles, makeStyles, useTheme } from '@material-ui/core/styles';
-import { color } from './styles/theme';
+import { color } from '../styles/theme';
 import { setIsAuthenticated } from 'store/session';
-import { useAppDispatch, useAppSelector } from './hooks/storeHooks';
+import { useAppDispatch, useAppSelector } from '../hooks/storeHooks';
 import Avatar from '@material-ui/core/Avatar';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import IconButton from '@material-ui/core/IconButton';
@@ -15,6 +14,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
+import SessionAPI from '../api/sessions'
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -42,10 +42,7 @@ const AvatarMenu: FunctionComponent<Props> = ({ containerClass }) => {
   const anchorRef = React.useRef<HTMLButtonElement>(null);
 
   const handleLogout = () => {
-    API.logout().then(() => {
-      dispatch(setIsAuthenticated(false));
-      window.location.assign('/community');
-    });
+    SessionAPI.logout()
   };
 
   const handleAvatarToggle = () => {
