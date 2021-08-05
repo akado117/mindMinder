@@ -1,35 +1,35 @@
-import { isNull, isUndefined } from 'lodash';
+import { isNull, isUndefined } from 'lodash'
 import { baseAPIURL } from '../../config'
 
-export type Data = Record<string, string | number | boolean | null>;
-type RequestOpts = RequestInit & { body?: string };
+export type Data = Record<string, string | number | boolean | null>
+type RequestOpts = RequestInit & { body?: string }
 
 export type APIError = {
-  status: string;
+  status: string
   data: {
     error: {
-      code: string;
-    };
-  };
-};
+      code: string
+    }
+  }
+}
 
 export const baseURL = baseAPIURL
   ? `${window.location.protocol}//${baseAPIURL}`
-  : `${window.location.protocol}//${window.location.host}`;
+  : `${window.location.protocol}//${window.location.host}`
 
-const communityExtension = '/api/community';
+const communityExtension = '/api/community'
 
 function encodeQueryData(params: Data) {
-  if (Object.keys(params).length === 0) return '';
+  if (Object.keys(params).length === 0) return ''
 
-  const ret: string[] = [];
+  const ret: string[] = []
   Object.entries(params)
     .filter(([, value]) => !isNull(value) && !isUndefined(value))
     .forEach(([key, value]) => {
-      ret.push(encodeURIComponent(key) + '=' + encodeURIComponent(value as string));
-    });
+      ret.push(encodeURIComponent(key) + '=' + encodeURIComponent(value as string))
+    })
 
-  return '?' + ret.join('&');
+  return '?' + ret.join('&')
 }
 
 function options(type: string, data: Data): RequestOpts {
@@ -39,85 +39,85 @@ function options(type: string, data: Data): RequestOpts {
     cache: 'no-cache' as RequestCache, // *default, no-cache, reload, force-cache, only-if-cached
     credentials: 'same-origin' as RequestCredentials, // include, *same-origin, omit
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
       // 'Content-Type': 'application/x-www-form-urlencoded',
     },
     redirect: 'follow' as RequestRedirect, // manual, *follow, error
     referrerPolicy: 'no-referrer' as ReferrerPolicy, // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url,
-    body: ''
-  };
+    body: '',
+  }
 
   if (type != 'GET' && type != 'DELETE') {
-    return Object.assign(options, { body: JSON.stringify(data) });
+    return Object.assign(options, { body: JSON.stringify(data) })
   } else {
-    delete options.body;
-    return options;
+    delete options.body
+    return options
   }
 }
 
 // Allows hard override of url api extention. If you pass a url with /api/, it will use the raw url passed
 // Else, will appent `/api/community`
 export async function baseApi<T, Input>(url: string, type: string, data: Input | Data): Promise<T> {
-  type = type.toUpperCase();
-  let params = '';
-  if (type === 'GET' || type === 'DELETE') params = encodeQueryData(data as Data);
-  const queryURL = url.includes('/api/') ? url : `${communityExtension}${url}`;
+  type = type.toUpperCase()
+  let params = ''
+  if (type === 'GET' || type === 'DELETE') params = encodeQueryData(data as Data)
+  const queryURL = url.includes('/api/') ? url : `${communityExtension}${url}`
 
-  return fetch(`${baseURL}${queryURL}${params}`, options(type, data as Data)).then((response) => {
+  return fetch(`https://cuminu-staging.web.app/${queryURL}${params}`, options(type, data as Data)).then(response => {
     // Catches and throws error with status and stringified error data.
     // Will also catch completely invalid errors, and just include status and whatever message exists
     // Please note, this will double stringify message.data aka. JSON.parse(JSON.parse(error).data)
     if (!response.ok) {
       return response
         .json()
-        .then((data) => {
-          throw new Error(JSON.stringify(data));
+        .then(data => {
+          throw new Error(JSON.stringify(data))
         })
-        .catch((err) => {
+        .catch(err => {
           const error = JSON.stringify({
             status: response.statusText,
-            data: err.message
-          });
-          throw new Error(error);
-        });
+            data: err.message,
+          })
+          throw new Error(error)
+        })
     }
 
     if (response.redirected) {
-      window.location.href = response.url;
+      window.location.href = response.url
     }
 
-    return response.json().then((data) => {
-      return data as T;
-    });
-  });
+    return response.json().then(data => {
+      return data as T
+    })
+  })
 }
 
 export function unwrapError(error: string) {
   let parsedError
   try {
-    parsedError = JSON.parse(error);
+    parsedError = JSON.parse(error)
   } catch (_e) {
     return error
   }
-  const data = JSON.parse(parsedError.data);
+  const data = JSON.parse(parsedError.data)
 
   return {
     ...parsedError,
-    data
-  };
+    data,
+  }
 }
 
 export default {
   async get<Output, Input>(url: string, params: Data | Input) {
-    return await baseApi<Output, Input>(url, 'GET', params);
+    return await baseApi<Output, Input>(url, 'GET', params)
   },
   async post<Output, Input>(url: string, data: Data | Input) {
-    return await baseApi<Output, Input>(url, 'POST', data);
+    return await baseApi<Output, Input>(url, 'POST', data)
   },
   async put<Output, Input>(url: string, data: Data | Input) {
-    return await baseApi<Output, Input>(url, 'PUT', data);
+    return await baseApi<Output, Input>(url, 'PUT', data)
   },
   async delete<Output, Input>(url: string, params: Data | Input) {
-    return await baseApi<Output, Input>(url, 'DELETE', params);
-  }
-};
+    return await baseApi<Output, Input>(url, 'DELETE', params)
+  },
+}

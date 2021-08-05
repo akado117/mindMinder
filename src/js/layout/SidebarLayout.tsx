@@ -1,23 +1,22 @@
-import React, { ReactNode } from 'react';
-import clsx from 'clsx';
-import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { color, gradients } from '../styles/theme';
-import { spaceBetween } from '../styles/layout';
+import React, { ReactNode } from 'react'
+import clsx from 'clsx'
+import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core/styles'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import { color, gradients } from '../styles/theme'
+import { spaceBetween } from '../styles/layout'
 import { goTo } from '../hooks/utils'
-import AvatarMenu from '../components/AvatarMenu';
-import WindowHeightContainer from './WindowHeightContainer';
+import AvatarMenu from '../components/AvatarMenu'
+import WindowHeightContainer from './WindowHeightContainer'
 
-
-const drawerWidth = 240;
+const drawerWidth = 240
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: 'flex',
-      height: '100%'
+      height: '100%',
     },
     appBar: {
       backgroundColor: color.white,
@@ -27,21 +26,28 @@ const useStyles = makeStyles((theme: Theme) =>
       zIndex: theme.zIndex.drawer - 1,
       transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen
+        duration: theme.transitions.duration.leavingScreen,
       }),
-      height: '90px'
+      height: '90px',
     },
     appBarHeaderLogo: {
       marginLeft: '1rem',
-      marginRight: '9rem'
+      marginRight: '9rem',
+    },
+    swapButton: {
+      backgroundColor: 'white',
+      padding: '.8rem 2rem',
+      borderRadius: '1rem',
+      fontSize: '1.1rem',
+      cursor: 'pointer',
     },
     appBarShift: {
       marginLeft: drawerWidth,
       width: `calc(100% - ${drawerWidth}px)`,
       transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen
-      })
+        duration: theme.transitions.duration.enteringScreen,
+      }),
     },
     toolbar: {
       display: 'flex',
@@ -50,12 +56,12 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(0, 1),
       height: '90px',
       // necessary for content to be below app bar
-      ...theme.mixins.toolbar
+      ...theme.mixins.toolbar,
     },
     middleLogo: {
       [theme.breakpoints.down('sm')]: {
-        display: 'none'
-      }
+        display: 'none',
+      },
     },
     toolbarHeader: {
       ...spaceBetween,
@@ -65,35 +71,42 @@ const useStyles = makeStyles((theme: Theme) =>
     content: {
       flexGrow: 1,
       padding: theme.spacing(3),
-      height: '100%'
+      height: '100%',
     },
     noPadding: {
-      padding: 0
+      padding: 0,
     },
     contentBackground: {
       backgroundImage: gradients.blackPink,
-      height: '100%'
-    }
-  })
-);
+      height: '100%',
+    },
+  }),
+)
 
 interface SidebarProps {
-  noPadding?: boolean;
-  children?: ReactNode;
-  includeWindowHeightContainer?: boolean;
-  allowOverflow?: boolean;
+  noPadding?: boolean
+  children?: ReactNode
+  includeWindowHeightContainer?: boolean
+  allowOverflow?: boolean
 }
 
 const SidebarLayout = (props: SidebarProps) => {
-  const theme = useTheme();
-  const classes = useStyles(theme);
-  const [isSidebarOpen, _setSidebarOpen] = React.useState(false);
+  const theme = useTheme()
+  const classes = useStyles(theme)
+  const [isSidebarOpen, _setSidebarOpen] = React.useState(false)
 
   const content = <div className={classes.contentBackground}>{props.children}</div>
 
-  const heightContainer = props.includeWindowHeightContainer ? <WindowHeightContainer heightCompensation={90} useWhenDesktop allowOverflow={props.allowOverflow}>{content}</WindowHeightContainer> : content
+  const heightContainer = props.includeWindowHeightContainer ? (
+    <WindowHeightContainer heightCompensation={90} useWhenDesktop allowOverflow={props.allowOverflow}>
+      {content}
+    </WindowHeightContainer>
+  ) : (
+    content
+  )
 
-  const goHome = goTo("home")
+  const goHome = goTo('home')
+  const goToSwap = goTo('swap')
 
   return (
     <div className={classes.root}>
@@ -101,7 +114,7 @@ const SidebarLayout = (props: SidebarProps) => {
       <AppBar
         position="fixed"
         className={clsx(classes.appBar, {
-          [classes.appBarShift]: isSidebarOpen
+          [classes.appBarShift]: isSidebarOpen,
         })}
       >
         <Toolbar className={classes.toolbarHeader}>
@@ -111,6 +124,9 @@ const SidebarLayout = (props: SidebarProps) => {
           <div className={classes.middleLogo} onClick={goHome}>
             <img src="/imgs/logo_word.png" alt="logo_text" />
           </div>
+          <div onClick={goToSwap} className={classes.swapButton}>
+            Swap
+          </div>
           <AvatarMenu />
         </Toolbar>
       </AppBar>
@@ -119,7 +135,7 @@ const SidebarLayout = (props: SidebarProps) => {
         {heightContainer}
       </main>
     </div>
-  );
-};
+  )
+}
 
-export default SidebarLayout;
+export default SidebarLayout
