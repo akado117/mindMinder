@@ -93,7 +93,12 @@ export async function baseApi<T, Input>(url: string, type: string, data: Input |
 }
 
 export function unwrapError(error: string) {
-  const parsedError = JSON.parse(error);
+  let parsedError
+  try {
+    parsedError = JSON.parse(error);
+  } catch (_e) {
+    return error
+  }
   const data = JSON.parse(parsedError.data);
 
   return {

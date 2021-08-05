@@ -1,12 +1,14 @@
-import { createSlice, current, PayloadAction } from '@reduxjs/toolkit';
-import { Admin } from 'api/types';
+import firebase from 'firebase'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Profile } from '../api/types';
 import { unwrapError, APIError } from '../api/client';
 import { auth } from '../api/firebase'
 
 type AuthState = {
   isAuthenticated: boolean;
   isInitialized: boolean;
-  admin: Admin | undefined;
+  user: firebase.auth.UserCredential | undefined;
+  profile: Profile | undefined
   error: APIError | null;
   isLoading: boolean;
 };
@@ -14,6 +16,13 @@ type AuthState = {
 export interface LoginCredentials {
   email: string;
   password: string;
+}
+
+export interface SignupFields {
+  email: string;
+  password: string;
+  username: string;
+  name: string;
 }
 
 // firebase controls this at this time.
@@ -27,7 +36,8 @@ const currentUser = auth.currentUser
 const initialState: AuthState = {
   isAuthenticated: !!currentUser,
   isInitialized: false,
-  admin: undefined,
+  user: undefined,
+  profile: undefined,
   error: null,
   isLoading: false
 };
@@ -46,8 +56,11 @@ export const authSlice = createSlice({
     setIsInitialized: (state, action: PayloadAction<boolean>) => {
       state.isInitialized = action.payload;
     },
-    setAdmin: (state, action: PayloadAction<Admin>) => {
-      state.admin = action.payload;
+    setProfile: (state, action: PayloadAction<Profile>) => {
+      state.profile = action.payload;
+    },
+    setUser: (state, action: PayloadAction<firebase.auth.UserCredential>) => {
+      state.user = action.payload;
     },
     setAuthError: (state, action: PayloadAction<string>) => {
       state.error = unwrapError(action.payload);
@@ -58,5 +71,5 @@ export const authSlice = createSlice({
   }
 });
 
-export const { setIsAuthenticated, setIsInitialized, setAdmin, setAuthError, setAuthLoading } = authSlice.actions;
+export const { setIsAuthenticated, setIsInitialized, setUser, setProfile, setAuthError, setAuthLoading } = authSlice.actions;
 export default authSlice.reducer;

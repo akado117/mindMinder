@@ -50,6 +50,8 @@ npm-debug.log
 .envrc
 
 /.vscode
+/build
+/dist
 
 *.dump*
 

@@ -1,8 +1,5 @@
 import React from 'react'
 
-
-
-
 function LoadingScreen() {
 
   const style = {

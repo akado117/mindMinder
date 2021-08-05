@@ -1,10 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import clsx from 'clsx';
-import get from 'lodash/get';
 import { createStyles, makeStyles, useTheme } from '@material-ui/core/styles';
-import { color } from '../styles/theme';
-import { setIsAuthenticated } from 'store/session';
-import { useAppDispatch, useAppSelector } from '../hooks/storeHooks';
 import Avatar from '@material-ui/core/Avatar';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import IconButton from '@material-ui/core/IconButton';
@@ -12,20 +7,56 @@ import Grow from '@material-ui/core/Grow';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
+import { color } from '../styles/theme';
+import { buttonPrimary } from '../styles/button';
+import { goTo } from '../hooks/utils'
+import { useAppDispatch, useAppSelector } from '../hooks/storeHooks';
 import SessionAPI from '../api/sessions'
+import { Profile } from '../api/types'
 
 const useStyles = makeStyles(() =>
   createStyles({
     avatar: {
-      backgroundColor: color.grey50
+      backgroundColor: color.grey
     },
     hide: {
       display: 'none'
-    }
+    },
+    primaryButton: buttonPrimary
   })
 );
+
+interface ContentProps {
+  balance: number;
+  profile: Profile | undefined;
+  authenticated: boolean;
+  classes: ReturnType<typeof useStyles>;
+}
+
+function AvatarContent({ balance, profile, authenticated, classes }: ContentProps) {
+  const handleGoToLogin = goTo('login')
+
+  const avatar = profile?.avatarUrl ? <ListItemAvatar><Avatar src={profile.avatarUrl} /></ListItemAvatar> : null
+  const content = authenticated ? <ListItemText primary={profile?.username} secondary={`Wallet Balance ${balance || 0}`} /> :
+    <Button variant="contained" className={classes.primaryButton} onClick={handleGoToLogin} >Login</Button>
+
+
+  return (
+    <React.Fragment>
+      <ListItem>
+        {avatar}
+        {content}
+      </ListItem>
+      {authenticated ? <KeyboardArrowDownIcon /> : null}
+    </React.Fragment>
+  )
+}
 
 interface Props {
   containerClass?: string;
@@ -33,10 +64,8 @@ interface Props {
 
 const AvatarMenu: FunctionComponent<Props> = ({ containerClass }) => {
   const authState = useAppSelector(({ auth }) => auth);
-  const dispatch = useAppDispatch();
 
   const [isAvatarMenuOpen, setAvatarMenuOpen] = React.useState(false);
-  const currentUserInitials = get(authState, ['admin', 'initials'], '');
   const theme = useTheme();
   const classes = useStyles(theme);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
@@ -66,16 +95,17 @@ const AvatarMenu: FunctionComponent<Props> = ({ containerClass }) => {
     prevOpen.current = isAvatarMenuOpen;
   }, [isAvatarMenuOpen]);
 
+  const inner = <AvatarContent
+    balance={42069}
+    profile={authState.profile}
+    authenticated={authState.isAuthenticated}
+    classes={classes}
+  />
+  const menu = authState.isAuthenticated ? <IconButton ref={anchorRef} onClick={handleAvatarToggle}>{inner}</IconButton> : inner
+
   return (
-    <div
-      className={clsx(containerClass, {
-        [classes.hide]: !authState.isAuthenticated
-      })}
-    >
-      <IconButton ref={anchorRef} onClick={handleAvatarToggle}>
-        <Avatar className={classes.avatar}>{currentUserInitials}</Avatar>
-        <KeyboardArrowDownIcon />
-      </IconButton>
+    <div className={containerClass}>
+      {menu}
       <Popper open={isAvatarMenuOpen} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
         {({ TransitionProps, placement }) => (
           <Grow
@@ -92,7 +122,7 @@ const AvatarMenu: FunctionComponent<Props> = ({ containerClass }) => {
           </Grow>
         )}
       </Popper>
-    </div>
+    </div >
   );
 };
 

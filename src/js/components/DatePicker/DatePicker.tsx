@@ -35,7 +35,7 @@ const useStyles = makeStyles(() =>
     secondaryActive: { background: '#EFF0F7' },
     betweenSelection: {
       background: '#EFF0F7',
-      color: color.greyscaleTitleActive
+      color: color.grey
     },
     leftBorderCircle: { borderRadius: '24px 0 0 24px' },
     rightBorderCircle: { borderRadius: '0 24px 24px 0' },
@@ -55,7 +55,7 @@ function convertToDateString(dates: Date[]) {
   });
 }
 
-const DatePickerComponent: FunctionComponent<Props> = ({ handleDateChange, selectedRange }) => {
+const DatePickerComponent = ({ handleDateChange, selectedRange }: Props) => {
   const today = new Date();
   const initRange = selectedRange || [today, today];
   const [range, changeRange] = useState<Date[]>(initRange);
@@ -127,7 +127,7 @@ const DatePickerComponent: FunctionComponent<Props> = ({ handleDateChange, selec
         className={clsx(classes.calendar, {
           [classes.hide]: !showCalendar
         })}
-        onChange={(event) => handleDateSelected(event)}
+        onChange={(event: Date | Date[]) => handleDateSelected(event)}
         value={range}
         returnValue="range"
         selectRange

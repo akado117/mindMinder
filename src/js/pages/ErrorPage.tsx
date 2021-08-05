@@ -11,7 +11,7 @@ const PageNotFound: FunctionComponent = () => {
   const handleReturnHome = () => history.push(path.home);
 
   return (
-    <WindowHeightContainer style={{ backgroundColor: color.nightSky }}>
+    <WindowHeightContainer style={{ backgroundColor: color.grey }}>
       <PageNotFoundBody handleReturnHome={handleReturnHome}>
         <span>Sorry, something strange occurred</span>
         <span>Please click below to go home,</span>

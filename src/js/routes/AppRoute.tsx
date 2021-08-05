@@ -2,7 +2,7 @@ import React, { FunctionComponent, useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router';
 import { Route, RouteProps } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../hooks/storeHooks';
-import { setIsAuthenticated, setIsInitialized, setAdmin } from '../store/authSlice';
+import { setIsAuthenticated, setIsInitialized } from '../store/authSlice';
 import { path } from '../routes/Routes';
 import LoadingScreen from '../components/LoadingScreen';
 import SidebarLayout from '../layout/SidebarLayout';

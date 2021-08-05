@@ -1,8 +1,7 @@
 import React, { FunctionComponent } from 'react';
-import { createUseStyles } from 'react-jss';
-import { LogoStacked } from 'components/Logos';
+import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = createUseStyles({
+const useStyles = makeStyles({
   centerContent: {
     width: '100%',
     height: '100vh',
@@ -24,7 +23,7 @@ const LoadingScreen: FunctionComponent = () => {
   return (
     <div className={centerContent}>
       <div className={loadingContainer}>
-        <LogoStacked />
+        Loading spinner
       </div>
     </div>
   );

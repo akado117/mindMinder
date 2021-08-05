@@ -1,19 +1,19 @@
 import { color } from '../styles/theme';
 
 export const textBase = {
-  fontFamily: 'Helvetica, sans-serif',
+  fontFamily: 'Raleway',
   fontWeight: 'normal' as 'normal',
   fontStyle: 'normal',
   fontStretch: 'normal',
   letterSpacing: 'normal',
-  color: color.eclipse,
+  color: color.white,
   margin: 0
 };
 
 export const headingOne = {
   ...textBase,
-  fontFamily: 'Verlag, sans-serif',
-  fontSize: 30,
+  fontFamily: 'Libre Baskerville',
+  fontSize: 48,
   fontWeight: 'bold' as 'bold',
   lineHeight: 1.27,
   letterSpacing: -0.1
@@ -21,7 +21,7 @@ export const headingOne = {
 
 export const headingTwo = {
   ...textBase,
-  fontFamily: 'Verlag, sans-serif',
+  fontFamily: 'Libre Baskerville',
   fontSize: 22,
   fontWeight: 'bold' as 'bold',
   lineHeight: 1.45
@@ -29,7 +29,7 @@ export const headingTwo = {
 
 export const headingThree = {
   ...textBase,
-  fontFamily: 'Inter UI, sans-serif',
+  // fontFamily: 'Inter UI, sans-serif',
   fontSize: 17,
   fontWeight: 500,
   lineHeight: 1.24
@@ -37,22 +37,22 @@ export const headingThree = {
 
 export const headingFour = {
   ...textBase,
-  fontFamily: 'Inter UI, sans-serif',
+  // fontFamily: 'Inter UI, sans-serif',
   fontSize: 15,
   lineHeight: 1.33,
-  color: color.moon
+  color: color.white
 };
 
 export const headingFive = {
   ...textBase,
-  fontFamily: 'Inter UI, sans-serif',
+  // fontFamily: 'Inter UI, sans-serif',
   fontSize: 11,
   lineHeight: 1.64
 };
 
 export const paragraph = {
   ...textBase,
-  fontFamily: 'Inter UI, sans-serif',
+  // fontFamily: 'Inter UI, sans-serif',
   fontSize: 17,
   lineHeight: 1.29
 };
@@ -86,6 +86,6 @@ export const smallButtonText = {
 };
 
 export const strong = {
-  color: color.blueSky,
+  color: color.white,
   fontWeight: 'bold' as 'bold'
 };

@@ -13,7 +13,7 @@ const useStyles = makeStyles(() =>
       cursor: 'pointer',
       flexDirection: 'column',
       fontFamily: 'Poppins',
-      color: color.greyscaleTitleActive,
+      color: color.grey,
       margin: '0 8px'
     },
     monthLabel: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles(() =>
       display: 'flex',
       alignItems: 'center',
       letterSpacing: 0.25,
-      color: color.communityBlue
+      color: color.lightPink
     },
     dayLabels: {
       display: 'flex',

@@ -10,7 +10,8 @@ export const flex = {
 
 export const center = {
   display: 'flex',
-  justifyContent: 'center'
+  justifyContent: 'center',
+  alignItems: 'center'
 };
 
 /**

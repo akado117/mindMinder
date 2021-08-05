@@ -4,29 +4,21 @@ import createMuiTheme from '@material-ui/core/styles/createTheme';
 export const fade = (color: string, fadeTo: number) => makeColor(color).fade(fadeTo).toString();
 
 export const color = {
-  grey50: '#D0D1D2',
-  blueSky: '#1B4EF1',
-  nightSky: '#0C1123',
-  cloud: '#F1F4FF',
-  eclipse: '#252A3D',
-  moon: '#62666E',
-  fog: '#DFE6FF',
-  mist: '#FCFCFF',
-  attention: '#FF5B5E',
-  errorText: '#B90000',
-  success: '#00B989',
-  booked: '#00B989',
-  infoBG: '#FFFBF2',
-  incomeText: '#C98013',
-  income: '#FFC452',
+  lightPink: '#ff6dce',
+  primaryPink: '#da117f',
+  darkPink: '#b91e74',
   white: '#FFFFFF',
-  black: '#000000',
-  disabled: '#E2E7F1',
-  buttonHoverBlue: '#2B7CF9',
-  buttonActiveBlue: '#0F2EEC',
-  greyscaleTitleActive: '#14142B',
-  communityBlue: '#316094'
+  transparent: 'transparent',
+  grey: '#333',
 };
+
+export const gradients = {
+  blackPink: 'radial-gradient(circle at top left,#000 0%,#d6008f 100%)',
+  orangePink: 'radial-gradient(circle at top left,#ff6647 0%,#d6008f 100%)',
+  orangePinkActive: 'radial-gradient(circle at top center,#ff6647 0%,#d6008f 100%)',
+  orangePinkDisabled: 'radial-gradient(circle at top left,#9c3b7c 0%,#d6008f 100%)',
+  oranagePinkHover: 'radial-gradient(circle at top left,#ff340b 0%,#e8049d 100%)'
+}
 
 export const color2 = {
   activeButton: '#ADCCEE',
@@ -61,9 +53,32 @@ export const colorForTag = (color: Colors) => ({
 // https://material-ui.com/customization/breakpoints/
 const theme = createMuiTheme({
   palette: {
+    primary: {
+      light: color.lightPink,
+      main: color.primaryPink,
+      dark: color.darkPink,
+      contrastText: color.white,
+    },
+    text: {
+      primary: color.white
+    },
     background: {
       // default app background color
       default: color2.white
+    }
+  },
+  overrides: {
+    MuiInput: {
+      underline: {
+        '&::before': {
+          borderColor: color.white
+        }
+      }
+    },
+    MuiFormLabel: {
+      root: {
+        color: color.white
+      }
     }
   }
 });

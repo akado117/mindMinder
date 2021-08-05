@@ -1,3 +1,4 @@
+
 import { color as makeColor } from 'csx';
 
 export const Color = {

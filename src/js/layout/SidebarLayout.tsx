@@ -1,33 +1,39 @@
 import React, { ReactNode } from 'react';
 import clsx from 'clsx';
 import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core/styles';
-import { color } from '../styles/theme';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Sidebar from '../components/sidebar';
+import { color, gradients } from '../styles/theme';
+import { spaceBetween } from '../styles/layout';
+import { goTo } from '../hooks/utils'
 import AvatarMenu from '../components/AvatarMenu';
+import WindowHeightContainer from './WindowHeightContainer';
+
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      display: 'flex'
+      display: 'flex',
+      height: '100%'
     },
     appBar: {
       backgroundColor: color.white,
       boxShadow: 'none',
-      borderBottom: `1px solid ${color.grey50}`,
-      color: color.grey50,
+      borderBottom: `1px solid ${color.grey}`,
+      color: color.grey,
       zIndex: theme.zIndex.drawer - 1,
       transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen
-      })
+      }),
+      height: '90px'
     },
     appBarHeaderLogo: {
-      marginLeft: 72
+      marginLeft: '1rem',
+      marginRight: '9rem'
     },
     appBarShift: {
       marginLeft: drawerWidth,
@@ -37,27 +43,36 @@ const useStyles = makeStyles((theme: Theme) =>
         duration: theme.transitions.duration.enteringScreen
       })
     },
-    avatarMenu: {
-      position: 'absolute',
-      right: 0
-    },
     toolbar: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'flex-end',
       padding: theme.spacing(0, 1),
+      height: '90px',
       // necessary for content to be below app bar
       ...theme.mixins.toolbar
     },
+    middleLogo: {
+      [theme.breakpoints.down('sm')]: {
+        display: 'none'
+      }
+    },
     toolbarHeader: {
-      justifyContent: 'center'
+      ...spaceBetween,
+      backgroundColor: color.primaryPink,
+      height: '90px',
     },
     content: {
       flexGrow: 1,
-      padding: theme.spacing(3)
+      padding: theme.spacing(3),
+      height: '100%'
     },
     noPadding: {
       padding: 0
+    },
+    contentBackground: {
+      backgroundImage: gradients.blackPink,
+      height: '100%'
     }
   })
 );
@@ -65,12 +80,20 @@ const useStyles = makeStyles((theme: Theme) =>
 interface SidebarProps {
   noPadding?: boolean;
   children?: ReactNode;
+  includeWindowHeightContainer?: boolean;
+  allowOverflow?: boolean;
 }
 
 const SidebarLayout = (props: SidebarProps) => {
   const theme = useTheme();
   const classes = useStyles(theme);
   const [isSidebarOpen, _setSidebarOpen] = React.useState(false);
+
+  const content = <div className={classes.contentBackground}>{props.children}</div>
+
+  const heightContainer = props.includeWindowHeightContainer ? <WindowHeightContainer heightCompensation={90} useWhenDesktop allowOverflow={props.allowOverflow}>{content}</WindowHeightContainer> : content
+
+  const goHome = goTo("home")
 
   return (
     <div className={classes.root}>
@@ -82,13 +105,18 @@ const SidebarLayout = (props: SidebarProps) => {
         })}
       >
         <Toolbar className={classes.toolbarHeader}>
-          <img src="/imgs/logo_word.png" alt="logo_header" className={classes.appBarHeaderLogo} />
-          <AvatarMenu containerClass={classes.avatarMenu} />
+          <div onClick={goHome}>
+            <img src="/imgs/logo_plain.png" alt="logo_header" className={classes.appBarHeaderLogo} />
+          </div>
+          <div className={classes.middleLogo} onClick={goHome}>
+            <img src="/imgs/logo_word.png" alt="logo_text" />
+          </div>
+          <AvatarMenu />
         </Toolbar>
       </AppBar>
       <main className={`${classes.content} ${props.noPadding ? classes.noPadding : ''}`}>
         <div className={classes.toolbar} />
-        <div>{props.children}</div>
+        {heightContainer}
       </main>
     </div>
   );

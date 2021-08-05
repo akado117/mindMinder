@@ -1,5 +1,6 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
 import useWindowHeight from '../hooks/useWindowHeight';
 
 /**
@@ -27,14 +28,37 @@ const createClasses = makeStyles((theme) => ({
       overflow: 'hidden',
       height: (props: Props) => props.height
     }
-  }
+  },
+  containerLarge: {
+    [theme.breakpoints.up('sm')]: {
+      width: '100vw',
+      overflow: 'hidden',
+      height: (props: Props) => props.height
+    }
+  },
+  overflow: { overflowY: 'auto' }
 }));
 
-const WindowHeightContainer: FunctionComponent<JSX.IntrinsicElements['div']> = (props) => {
-  const windowHeight = useWindowHeight();
+interface ContainerProps {
+  children: React.ReactNode;
+  heightCompensation?: number;
+  useWhenDesktop?: boolean;
+  allowOverflow?: boolean;
+  style?: React.CSSProperties;
+}
+
+const WindowHeightContainer = (props: ContainerProps) => {
+  // 65 compensates for navbar
+  /* tslint:disable-next-line */
+  const windowHeight = useWindowHeight() - (props.heightCompensation || 60);
   const classes = createClasses({ height: windowHeight });
 
-  return <div className={classes.container} {...props} />;
+  const containerClasses = clsx(classes.container, {
+    [classes.containerLarge]: props.useWhenDesktop,
+    [classes.overflow]: props.allowOverflow
+  })
+
+  return <div className={containerClasses} >{props.children}</div>
 };
 
 export default WindowHeightContainer;
