@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
 const LandingPage: React.FunctionComponent = () => {
   const classes = useStyles()
 
-  const goToLogin = goTo('login')
+  const goToSignup = goTo('signup')
 
   return (
     <SidebarLayout noPadding includeWindowHeightContainer allowOverflow>
@@ -62,8 +62,8 @@ const LandingPage: React.FunctionComponent = () => {
       <div className={classes.main}>
         <h1 className={classes.heading}>Welcome to the Future of 18+</h1>
         <div className={classes.buttonContainer} style={{ marginBottom: '3rem' }}>
-          <Button variant="contained" className={classes.primaryButton} onClick={goToLogin}>Model SignUp</Button>
-          <Button variant="contained" className={classes.primaryButton} onClick={goToLogin}>Fan Signup</Button>
+          <Button variant="contained" className={classes.primaryButton} onClick={goToSignup}>Model SignUp</Button>
+          <Button variant="contained" className={classes.primaryButton} onClick={goToSignup}>Fan Signup</Button>
           <Button variant="contained" className={classes.primaryButton} target="_blank" href="https://app.uniswap.org/#/swap?outputCurrency=0xd6327ce1fb9d6020e8c2c0e124a1ec23dcab7536">Buy CumInu</Button>
         </div>
         <div className={classes.buttonContainer}>

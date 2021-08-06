@@ -1,27 +1,25 @@
-import React, { useState, FunctionComponent } from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
-import { rem } from 'csx'
-import Container from '@material-ui/core/Container'
-import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
-import { makeStyles } from '@material-ui/core/styles'
-import Chip from '@material-ui/core/Chip'
-import { goTo } from '../hooks/utils'
-import SidebarLayout from '../layout/SidebarLayout'
-import theme, { color } from '../styles/theme'
-import { buttonPrimary } from '../styles/button'
-import { headingOne, textBase } from '../styles/typography'
-import { flex, horizontalRule, columnStack, center, rowStack } from '../styles/layout'
-import { path } from '../routes/Routes'
-import { useAppDispatch, useAppSelector } from '../hooks/storeHooks'
-import { login, createAccount } from '../api/sessions'
-import { APIError, baseURL } from '../api/client'
-import { AppDispatch } from '../store/store'
+import React, { useState } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
+import { rem } from 'csx';
+import Container from '@material-ui/core/Container';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import Chip from '@material-ui/core/Chip';
+import { goTo } from '../hooks/utils';
+import SidebarLayout from '../layout/SidebarLayout';
+import theme, { color } from '../styles/theme';
+import { buttonPrimary } from '../styles/button';
+import { headingOne, textBase } from '../styles/typography';
+import { flex, horizontalRule, columnStack, center, rowStack } from '../styles/layout';
+import { path } from '../routes/Routes';
+import { useAppDispatch, useAppSelector } from '../hooks/storeHooks';
+import { login, createAccount } from '../api/sessions';
+import { AppDispatch } from '../store/store';
+import { AuthError } from '../api/firebase';
 
-const emailRegex = RegExp(
-  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-  'i',
-)
+const emailRegex = RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, 'i')
+const whitespaceRegex = /\s/g
 
 interface FormState {
   email: {
@@ -35,10 +33,6 @@ interface FormState {
 }
 
 interface signUpFormState {
-  name: {
-    name: string
-    dirty: boolean
-  }
   email: {
     email: string
     dirty: boolean
@@ -138,26 +132,26 @@ const Heading = ({ classes }: HeadingProps) => (
     <span className={`${classes.titleSmall}`}>to</span>
     <span>Cuminu</span>
   </h1>
-)
-type tErrorMessages = {
-  [key: string]: string
-}
+);
+// type tErrorMessages = {
+//   [key: string]: string;
+// };
 
-const errorMessages: tErrorMessages = {
-  invalid_authentication: 'Invalid Username or Password',
-  account_deactivated: 'Account Deactivated! Please contact an admin',
-  other: 'Unknown Error',
-}
+// const errorMessages: tErrorMessages = {
+//   invalid_authentication: 'Invalid Username or Password',
+//   account_deactivated: 'Account Deactivated! Please contact an admin',
+//   other: 'Unknown Error'
+// };
 interface ErrorProps {
-  error: null | APIError
+  error: null | AuthError;
 }
 
 function DisplayError({ error }: ErrorProps) {
   if (!error) return null
 
-  const errorType = (error && error.data && error.data?.error?.code) || 'other'
+  // const errorType = (error && error.data && error.data?.error?.code) || 'other';
 
-  return <Chip label={errorMessages[errorType as string] as string} color="secondary" />
+  return <Chip label={error.message} style={{fontSize: "18px"}} color="secondary" />;
 }
 
 interface LoginFormProps {
@@ -213,7 +207,7 @@ const LoginForm = ({ classes, dispatch }: LoginFormProps) => {
         helperText={state.password.dirty && !passwordValid && 'Password shorter than 8 characters'}
         fullWidth
       />
-      <Button disabled={!canSubmit} type="submit" fullWidth variant="contained" className={classes.loginButton}>
+      <Button disabled={!canSubmit} fullWidth variant="contained" className={classes.loginButton} type="submit">
         Sign In
       </Button>
     </form>
@@ -222,27 +216,19 @@ const LoginForm = ({ classes, dispatch }: LoginFormProps) => {
 
 const SignupForm = ({ classes, dispatch }: LoginFormProps) => {
   const [state, setState] = useState<signUpFormState>({
-    name: { name: '', dirty: false },
     email: { email: '', dirty: false },
     username: { username: '', dirty: false },
     password: { password: '', dirty: false },
     passwordRepeat: { passwordRepeat: '', dirty: false },
   })
 
-  const {
-    email: { email },
-    password: { password },
-    name: { name },
-    username: { username },
-    passwordRepeat: { passwordRepeat },
-  } = state
+  const { email: { email }, password: { password }, username: { username }, passwordRepeat: { passwordRepeat } } = state;
 
   const validation = {
     email: emailRegex.test(email),
     password: password.length >= 8,
     passwordRepeat: passwordRepeat === password,
-    name: name.split(' ').length > 1,
-    username: username.length > 3,
+    username: username.length > 3 && !whitespaceRegex.test(username)
   }
 
   const handleInputChange = (
@@ -254,10 +240,12 @@ const SignupForm = ({ classes, dispatch }: LoginFormProps) => {
     return state[field].dirty && !validation[field] && errorText
   }
 
+  const goToRick = goTo('rick')
+
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault()
     if (Object.values(validation).indexOf(false) === -1) {
-      dispatch(createAccount({ email, password, name, username })).then(() => goTo('rick'))
+      dispatch(createAccount({ email, password, username })).then(() => goToRick(e));
     }
   }
   return (
@@ -277,19 +265,9 @@ const SignupForm = ({ classes, dispatch }: LoginFormProps) => {
         label="UserName"
         value={username}
         type="text"
-        onChange={e => handleInputChange(e, 'username')}
-        error={!!handleValidation('username', 'Must be longer than 3 characters')}
-        helperText={handleValidation('username', 'Must be longer than 3 characters')}
-        fullWidth
-      />
-      <TextField
-        color="primary"
-        label="Full Name"
-        value={name}
-        type="text"
-        onChange={e => handleInputChange(e, 'name')}
-        error={!!handleValidation('name', 'Please include at least a first and last name')}
-        helperText={handleValidation('name', 'Please include at least a first and last name')}
+        onChange={(e) => handleInputChange(e, 'username')}
+        error={!!handleValidation('username', "Must be longer than 3 characters")}
+        helperText={handleValidation('username', "Must be longer than 3 characters and have no spaces")}
         fullWidth
       />
       <TextField
@@ -329,14 +307,14 @@ interface LoginProps {
   type?: 'login' | 'signup' | 'reset'
 }
 
-const Login: FunctionComponent<LoginProps> = ({ type }) => {
-  const dispatch = useAppDispatch()
-  const authState = useAppSelector(state => state.auth)
-  const [formType, setFormType] = useState<LoginProps['type']>(type || 'login')
+const Login = ({ type }: LoginProps) => {
+  const dispatch = useAppDispatch();
+  const authState = useAppSelector((state) => state.auth);
+  const [formType, setFormType] = useState<LoginProps["type"]>(type || 'login')
 
-  const classes = useStyles(theme)
-  const history = useHistory()
-  const location = useLocation<LocationState>()
+  const classes = useStyles(theme);
+  const history = useHistory();
+  const location = useLocation<LocationState>();
 
   const { isAuthenticated } = authState
 
@@ -372,7 +350,7 @@ const Login: FunctionComponent<LoginProps> = ({ type }) => {
         <Container maxWidth="sm">
           <Heading classes={classes} />
           <div className={classes.error}>
-            <DisplayError error={authState.error} />
+            <DisplayError error={authState.error} /> 
           </div>
           {form}
           <div className={classes.resetLink}>

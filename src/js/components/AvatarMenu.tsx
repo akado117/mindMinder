@@ -13,11 +13,11 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
-import { color } from '../styles/theme';
+import { color, gradients } from '../styles/theme';
 import { buttonPrimary } from '../styles/button';
 import { goTo } from '../hooks/utils'
 import { useAppDispatch, useAppSelector } from '../hooks/storeHooks';
-import SessionAPI from '../api/sessions'
+import { logout } from '../api/sessions'
 import { Profile } from '../api/types'
 
 const useStyles = makeStyles(() =>
@@ -28,7 +28,10 @@ const useStyles = makeStyles(() =>
     hide: {
       display: 'none'
     },
-    primaryButton: buttonPrimary
+    primaryButton: buttonPrimary,
+    popover: {
+      backgroundImage: gradients.blackPink
+    }
   })
 );
 
@@ -64,6 +67,7 @@ interface Props {
 
 const AvatarMenu: FunctionComponent<Props> = ({ containerClass }) => {
   const authState = useAppSelector(({ auth }) => auth);
+  const dispatch = useAppDispatch()
 
   const [isAvatarMenuOpen, setAvatarMenuOpen] = React.useState(false);
   const theme = useTheme();
@@ -71,7 +75,8 @@ const AvatarMenu: FunctionComponent<Props> = ({ containerClass }) => {
   const anchorRef = React.useRef<HTMLButtonElement>(null);
 
   const handleLogout = () => {
-    SessionAPI.logout()
+    setAvatarMenuOpen(false);
+    dispatch(logout())
   };
 
   const handleAvatarToggle = () => {
@@ -112,7 +117,7 @@ const AvatarMenu: FunctionComponent<Props> = ({ containerClass }) => {
             {...TransitionProps}
             style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
           >
-            <Paper>
+            <Paper className={classes.popover}>
               <ClickAwayListener onClickAway={handleAvatarClose}>
                 <MenuList autoFocusItem={isAvatarMenuOpen} id="menu-list-grow">
                   <MenuItem onClick={handleLogout}>Logout</MenuItem>

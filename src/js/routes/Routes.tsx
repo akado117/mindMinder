@@ -17,13 +17,15 @@ export const path = {
   login: '/login',
   rick: '/rick',
   swap: '/swap',
-}
+  signup: '/signup',
+};
 
 const Routes: FunctionComponent = () => {
   return (
     <Switch>
       <Route exact path={path.home} component={LandingPage} />
       <AuthRoute exact path={path.login} component={Login} />
+      <AuthRoute exact path={path.signup} component={() => <Login type="signup"/>} />
       <AppRoute exact path={path.home} component={() => <div></div>} />
       <AppRoute exact path={path.unitMapper} component={() => <div></div>} />
       <AppRoute exact path={path.rick} component={Rick} />

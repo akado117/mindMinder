@@ -1,15 +1,15 @@
 import firebase from 'firebase'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Profile } from '../api/types';
-import { unwrapError, APIError } from '../api/client';
-import { auth } from '../api/firebase'
+import { unwrapError } from '../api/client';
+import { auth, AuthError } from '../api/firebase'
 
 type AuthState = {
   isAuthenticated: boolean;
   isInitialized: boolean;
   user: firebase.auth.UserCredential | undefined;
   profile: Profile | undefined
-  error: APIError | null;
+  error: AuthError | null;
   isLoading: boolean;
 };
 
@@ -22,7 +22,6 @@ export interface SignupFields {
   email: string;
   password: string;
   username: string;
-  name: string;
 }
 
 // firebase controls this at this time.
@@ -62,8 +61,8 @@ export const authSlice = createSlice({
     setUser: (state, action: PayloadAction<firebase.auth.UserCredential>) => {
       state.user = action.payload;
     },
-    setAuthError: (state, action: PayloadAction<string>) => {
-      state.error = unwrapError(action.payload);
+    setAuthError: (state, action: PayloadAction<AuthError | null>) => {
+      state.error = action.payload;
     },
     setAuthLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;

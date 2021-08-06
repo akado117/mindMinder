@@ -5,6 +5,11 @@ import "firebase/functions";
 import { firebaseConfig } from '../../config'
 // import "firebase/analytics";
 
+export type AuthError = {
+  code: string,
+  message: string,
+}
+
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
