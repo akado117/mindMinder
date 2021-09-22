@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router';
 import { Route, RouteProps } from 'react-router-dom';
 import { useAppSelector } from '../hooks/storeHooks';
-import { path } from '../routes/Routes';
+import { path } from '../routes/routeList';
 import SidebarLayout from '../layout/SidebarLayout';
 
 interface Props extends RouteProps {

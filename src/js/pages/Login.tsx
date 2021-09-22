@@ -12,7 +12,7 @@ import theme, { color } from '../styles/theme';
 import { buttonPrimary } from '../styles/button';
 import { headingOne, textBase } from '../styles/typography';
 import { flex, horizontalRule, columnStack, center, rowStack } from '../styles/layout';
-import { path } from '../routes/Routes';
+import { path } from '../routes/routeList';
 import { useAppDispatch, useAppSelector } from '../hooks/storeHooks';
 import { login, createAccount } from '../api/sessions';
 import { AppDispatch } from '../store/store';
@@ -62,6 +62,10 @@ const useStyles = makeStyles({
   container: {
     ...textBase,
 
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
     backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center bottom',

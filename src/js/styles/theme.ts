@@ -7,6 +7,7 @@ export const color = {
   lightPink: '#ff6dce',
   primaryPink: '#da117f',
   darkPink: '#b91e74',
+
   white: '#FFFFFF',
   transparent: 'transparent',
   grey: '#333',
@@ -14,6 +15,7 @@ export const color = {
 
 export const gradients = {
   blackPink: 'radial-gradient(circle at top left,#000 0%,#d6008f 100%)',
+  pinkBlack: 'radial-gradient(circle at top left,#d6008f 0%,#000 100%)',
   orangePink: 'radial-gradient(circle at top left,#ff6647 0%,#d6008f 100%)',
   orangePinkActive: 'radial-gradient(circle at top center,#ff6647 0%,#d6008f 100%)',
   orangePinkDisabled: 'radial-gradient(circle at top left,#9c3b7c 0%,#d6008f 100%)',
@@ -79,7 +81,8 @@ const theme = createMuiTheme({
       root: {
         color: color.white
       }
-    }
+    },
+    MuiDrawer: {paper: {backgroundImage: gradients.pinkBlack}}
   }
 });
 

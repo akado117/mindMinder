@@ -13,7 +13,7 @@ export const textBase = {
 export const headingOne = {
   ...textBase,
   fontFamily: 'Libre Baskerville',
-  fontSize: 48,
+  fontSize: 40,
   fontWeight: 'bold' as 'bold',
   lineHeight: 1.27,
   letterSpacing: -0.1

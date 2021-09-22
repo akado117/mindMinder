@@ -4,7 +4,7 @@ import SidebarLayout from '../layout/SidebarLayout';
 const Rick = () => {
   return (
     <SidebarLayout noPadding includeWindowHeightContainer allowOverflow>
-      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&start=42&controls=0&modestbranding=1" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope;" style={{position: 'fixed',right: 0, bottom: 0,minWidth: '100%', minHeight: '100%', width: 'auto', height: 'auto'}}></iframe>
+      <iframe width="1280" height="720" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
     </SidebarLayout>
   );
 }

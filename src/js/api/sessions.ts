@@ -1,5 +1,5 @@
 import { AppDispatch, dispatch as appDispatch } from '../store/store';
-import { LoginCredentials, SignupFields, setIsAuthenticated, setAuthError, setAuthLoading, setUser, setProfile } from '../store/authSlice';
+import { LoginCredentials, SignupFields, setIsAuthenticated, setAuthError, setAuthLoading, setUser, setProfile, setIsInitialized } from '../store/authSlice';
 import { auth, firestore, fb } from './firebase'
 import { documentExists } from '../utils'
 import pRetry from 'p-retry'
@@ -7,6 +7,7 @@ import { Profile } from './types';
 
 auth.onAuthStateChanged(async userAuth => {
   if (userAuth) {
+    appDispatch(setIsInitialized(true));
     appDispatch(setIsAuthenticated(true));
 
     const profileRef = await firestore.collection('users').doc(userAuth.uid).collection('profile').doc('public')
@@ -17,6 +18,7 @@ auth.onAuthStateChanged(async userAuth => {
       appDispatch(setProfile(profile))
     }
   } else {
+    appDispatch(setIsInitialized(true));
     appDispatch(setIsAuthenticated(false))
   }
 })

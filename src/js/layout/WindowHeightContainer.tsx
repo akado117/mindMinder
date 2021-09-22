@@ -25,18 +25,13 @@ const createClasses = makeStyles((theme) => ({
     minHeight: (props: Props) => props.height,
     [theme.breakpoints.down('sm')]: {
       width: '100vw',
-      overflow: 'hidden',
-      height: (props: Props) => props.height
     }
   },
   containerLarge: {
     [theme.breakpoints.up('sm')]: {
       width: '100vw',
-      overflow: 'hidden',
-      height: (props: Props) => props.height
     }
   },
-  overflow: { overflowY: 'auto' }
 }));
 
 interface ContainerProps {
@@ -48,14 +43,12 @@ interface ContainerProps {
 }
 
 const WindowHeightContainer = (props: ContainerProps) => {
-  // 65 compensates for navbar
   /* tslint:disable-next-line */
-  const windowHeight = useWindowHeight() - (props.heightCompensation || 60);
+  const windowHeight = useWindowHeight() - (props.heightCompensation || 0);
   const classes = createClasses({ height: windowHeight });
 
   const containerClasses = clsx(classes.container, {
-    [classes.containerLarge]: props.useWhenDesktop,
-    [classes.overflow]: props.allowOverflow
+    [classes.containerLarge]: props.useWhenDesktop
   })
 
   return <div className={containerClasses} >{props.children}</div>

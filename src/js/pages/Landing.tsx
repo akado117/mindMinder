@@ -60,7 +60,7 @@ const LandingPage: React.FunctionComponent = () => {
     <SidebarLayout noPadding includeWindowHeightContainer allowOverflow>
 
       <div className={classes.main}>
-        <h1 className={classes.heading}>Welcome to the Future of 18+</h1>
+        <h1 className={classes.heading}>Welcome to the Future of Adult Entertainment</h1>
         <div className={classes.buttonContainer} style={{ marginBottom: '3rem' }}>
           <Button variant="contained" className={classes.primaryButton} onClick={goToSignup}>Model SignUp</Button>
           <Button variant="contained" className={classes.primaryButton} onClick={goToSignup}>Fan Signup</Button>

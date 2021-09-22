@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useHistory, useLocation } from 'react-router';
-import { path } from '../routes/Routes';
+import { path } from '../routes/routeList';
 
 export function usePrevious<T>(value: T) {
   const ref = useRef<T>();
@@ -21,4 +21,10 @@ export const goTo = (route: Path) => {
     e.stopPropagation()
     history.push(path[route], { originalDestination: location.pathname + location.search });
   }
+}
+
+export const goToNoE = (route: Path) => {
+  const history = useHistory();
+  const location = useLocation();
+  return () => history.push(path[route], { originalDestination: location.pathname + location.search });
 }

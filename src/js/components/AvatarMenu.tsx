@@ -46,7 +46,7 @@ function AvatarContent({ balance, profile, authenticated, classes }: ContentProp
   const handleGoToLogin = goTo('login')
 
   const avatar = profile?.avatarUrl ? <ListItemAvatar><Avatar src={profile.avatarUrl} /></ListItemAvatar> : null
-  const content = authenticated ? <ListItemText primary={profile?.username} secondary={`Wallet Balance ${balance || 0}`} /> :
+  const content = authenticated ? <ListItemText primary={profile?.username}  /> :
     <Button variant="contained" className={classes.primaryButton} onClick={handleGoToLogin} >Login</Button>
 
 

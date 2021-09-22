@@ -1,14 +1,19 @@
-import React, { ReactNode } from 'react'
+import React, { ReactElement } from 'react'
 import clsx from 'clsx'
 import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
+import Drawer from '@material-ui/core/Drawer';
 import Toolbar from '@material-ui/core/Toolbar'
 import CssBaseline from '@material-ui/core/CssBaseline'
+import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import MenuIcon from '@material-ui/icons/Menu';
+import Slide from '@material-ui/core/Slide';
 import { color, gradients } from '../styles/theme'
-import { spaceBetween } from '../styles/layout'
 import { goTo } from '../hooks/utils'
 import AvatarMenu from '../components/AvatarMenu'
 import WindowHeightContainer from './WindowHeightContainer'
+import { DrawerNav, HorizontalNav } from './Nav'
+
 
 const drawerWidth = 240
 
@@ -32,7 +37,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     appBarHeaderLogo: {
       marginLeft: '1rem',
-      marginRight: '9rem',
+      [theme.breakpoints.down('sm')]: {
+        marginRight: '2rem',
+      }
+
     },
     swapButton: {
       backgroundColor: 'white',
@@ -58,15 +66,37 @@ const useStyles = makeStyles((theme: Theme) =>
       // necessary for content to be below app bar
       ...theme.mixins.toolbar,
     },
-    middleLogo: {
+    toolbarHeader: {
+      backgroundColor: color.primaryPink,
+      display: 'grid',
+      gridTemplateColumns: '1fr 2fr 1fr',
+      gridTemplateRows: 'auto',
+      width: '100%',
+      height: '90px',
+      [theme.breakpoints.down('sm')]: {
+        gridTemplateColumns: '1fr .5fr 1fr',
+      }
+    },
+    toolbarLeft: {
+      gridColumn: 1
+    },
+    toolbarMiddle: {
+      gridColumn: 2,
+      justifySelf: 'center'
+    },
+    toolbarRight: {
+      gridColumn: 3,
+      justifySelf: 'right'
+    },
+    hideSmall: {
       [theme.breakpoints.down('sm')]: {
         display: 'none',
       },
     },
-    toolbarHeader: {
-      ...spaceBetween,
-      backgroundColor: color.primaryPink,
-      height: '90px',
+    hideBeyondSmall: {
+      [theme.breakpoints.up('md')]: {
+        display: 'none',
+      },
     },
     content: {
       flexGrow: 1,
@@ -80,60 +110,110 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundImage: gradients.blackPink,
       height: '100%',
     },
+    navDrawer: {
+      backgroundImage: gradients.blackPink
+    }
   }),
 )
 
 interface SidebarProps {
   noPadding?: boolean
-  children?: ReactNode
+  children: ReactElement<any, any>
   includeWindowHeightContainer?: boolean
   allowOverflow?: boolean
+}
+
+interface HideOnScrollProps {
+  children: ReactElement<any, any>
+}
+
+function HideOnScroll(props: HideOnScrollProps) {
+  
+  const trigger = useScrollTrigger();
+
+  return (
+    <Slide appear={false} direction="down" in={!trigger}>
+      {props.children}
+    </Slide>
+  );
 }
 
 const SidebarLayout = (props: SidebarProps) => {
   const theme = useTheme()
   const classes = useStyles(theme)
-  const [isSidebarOpen, _setSidebarOpen] = React.useState(false)
+  const [isSidebarOpen, setSidebarOpen] = React.useState(false)
 
-  const content = <div className={classes.contentBackground}>{props.children}</div>
+  const content = <div className={classes.contentBackground}>{props.children}</div>  
+
+  const toggleDrawer = (open: boolean) => (
+    event: React.KeyboardEvent | React.MouseEvent,
+  ) => {
+    if (
+      event.type === 'keydown' &&
+      ((event as React.KeyboardEvent).key === 'Tab' ||
+        (event as React.KeyboardEvent).key === 'Shift')
+    ) {
+      return;
+    }
+
+    setSidebarOpen(open);
+  };
+
+  const goHome = goTo('home')
+
+  const appBar = (<AppBar
+    position="sticky"
+    className={clsx(classes.appBar, {
+      [classes.appBarShift]: false,
+    })}
+  >
+    <Toolbar className={classes.toolbarHeader}>
+      <div className={`${classes.hideBeyondSmall} ${classes.toolbarLeft}`}>
+        <button onClick={toggleDrawer(true)}>
+          <MenuIcon fontSize='large'/>
+        </button>
+      </div>
+      <div onClick={goHome} className={`${classes.hideSmall} ${classes.toolbarLeft}`}>
+        <img src="/imgs/logo_plain.png" alt="logo_header" className={classes.appBarHeaderLogo} />
+      </div>
+      <div onClick={goHome} className={`${classes.hideBeyondSmall} ${classes.toolbarMiddle}`}>
+        <img src="/imgs/logo_plain.png" alt="logo_header" className={classes.appBarHeaderLogo} />
+      </div>
+      <div className={`${classes.hideSmall} ${classes.toolbarMiddle}`}>
+        <HorizontalNav />
+      </div>
+      <div className={classes.toolbarRight}>
+        <AvatarMenu />
+      </div>
+    </Toolbar>
+  </AppBar>)
+
+  const inside = (
+    <React.Fragment>
+      <CssBaseline />
+      <HideOnScroll>
+        {appBar}
+      </HideOnScroll>
+      <main className={`${classes.content} ${props.noPadding ? classes.noPadding : ''}`} >
+        {content}
+      </main>
+    </React.Fragment>
+  )
 
   const heightContainer = props.includeWindowHeightContainer ? (
-    <WindowHeightContainer heightCompensation={90} useWhenDesktop allowOverflow={props.allowOverflow}>
-      {content}
+    <WindowHeightContainer heightCompensation={0} useWhenDesktop allowOverflow={props.allowOverflow}>
+      {inside}
+      <Drawer anchor="left" open={isSidebarOpen} onClose={toggleDrawer(false)}>
+        <DrawerNav />
+      </Drawer>
     </WindowHeightContainer>
   ) : (
     content
   )
 
-  const goHome = goTo('home')
-  const goToSwap = goTo('swap')
-
   return (
     <div className={classes.root}>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: isSidebarOpen,
-        })}
-      >
-        <Toolbar className={classes.toolbarHeader}>
-          <div onClick={goHome}>
-            <img src="/imgs/logo_plain.png" alt="logo_header" className={classes.appBarHeaderLogo} />
-          </div>
-          <div className={classes.middleLogo} onClick={goHome}>
-            <img src="/imgs/logo_word.png" alt="logo_text" />
-          </div>
-          <div onClick={goToSwap} className={classes.swapButton}>
-            Swap
-          </div>
-          <AvatarMenu />
-        </Toolbar>
-      </AppBar>
-      <main className={`${classes.content} ${props.noPadding ? classes.noPadding : ''}`}>
-        <div className={classes.toolbar} />
-        {heightContainer}
-      </main>
+      {heightContainer}
     </div>
   )
 }

@@ -12,7 +12,7 @@ function LoadingScreen() {
 
   return (
     <div style={style}>
-      <img src="imgs/loading" />
+      <img src="imgs/loading.gif" />
     </div>
   )
 }
