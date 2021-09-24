@@ -128,13 +128,14 @@ const useStyles = makeStyles({
 
 interface HeadingProps {
   classes: ReturnType<typeof useStyles>
+  formType: LoginProps["type"]
 }
 
-const Heading = ({ classes }: HeadingProps) => (
+const Heading = ({ classes, formType }: HeadingProps) => (
   <h1 className={classes.titleMain}>
-    Welcome back
+    Welcome {formType === "login" ? 'Back' : ""}
     <span className={`${classes.titleSmall}`}>to</span>
-    <span>Cuminu</span>
+    <span>MindMinder</span>
   </h1>
 );
 // type tErrorMessages = {
@@ -352,7 +353,7 @@ const Login = ({ type }: LoginProps) => {
     <SidebarLayout noPadding includeWindowHeightContainer allowOverflow>
       <div className={classes.container}>
         <Container maxWidth="sm">
-          <Heading classes={classes} />
+          <Heading classes={classes} formType={formType} />
           <div className={classes.error}>
             <DisplayError error={authState.error} /> 
           </div>
