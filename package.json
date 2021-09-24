@@ -1,9 +1,11 @@
 {
-  "name": "cuminu",
-  "version": "0.0.0",
+  "name": "mindminder",
+  "version": "0.0.1",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "deploy": "firebase deploy",
     "serve": "vite preview",
     "lint": "yarn eslint 'src/**/*.{ts,tsx}'",
     "format": "yarn prettier --write 'src/**/*.{ts,tsx}'",
