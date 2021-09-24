@@ -30,22 +30,22 @@ export const buttonPrimary = {
   ...buttonBase,
   ...largeButton,
   backgroundColor: color.transparent,
-  ...gradients.orangePink,
+  ...gradients.blueGreen,
   // backgroundPosition: "center center",
   // backgroundSize: "200% 200%",
   color: color.white,
   '&:hover': {
     // backgroundPosition: "top",
-    ...gradients.orangePinkActive,
+    ...gradients.blueGreenActive,
     // backgroundSize: "200% 200%",
     backgroundColor: color.white,
     // boxShadow: 'inset 0 0 0 1000px rgba(255,255,255,.6)',
   },
   '&:active': {
-    ...gradients.orangePinkActive,
+    ...gradients.blueGreenActive,
   },
   '&:disabled': {
-    ...gradients.orangePinkDisabled,
+    ...gradients.blueGreenDisabled,
   }
 };
 
@@ -59,10 +59,10 @@ export const buttonSecondary = {
       ...gradients.oranagePinkHover
     },
     '&:active': {
-      ...gradients.orangePinkActive
+      ...gradients.blueGreenActive
     },
     '&:disabled': {
-     ...gradients.orangePinkDisabled,
+     ...gradients.blueGreenDisabled,
     }
   }
 };

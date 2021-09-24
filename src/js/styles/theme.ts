@@ -8,7 +8,12 @@ export const color = {
   lightPink: '#ff6dce',
   primaryPink: '#da117f',
   darkPink: '#b91e74',
-
+  primaryBlue: '#0383ce',
+  lightBlue: '#02a2ff',
+  darkBlue: '#046198',
+  primaryGreen: '#47ff98',
+  primaryPurple: '#6c15af',
+  lightPurple: '#8b1fde',
   white: '#FFFFFF',
   transparent: 'transparent',
   grey: '#333',
@@ -17,23 +22,26 @@ export const color = {
 export const gradients = {
   blackPink: 'radial-gradient(circle at top left,#000 0%,#d6008f 100%)',
   pinkBlack: 'radial-gradient(circle at top left,#d6008f 0%,#000 100%)',
-  orangePinkBase: 'radial-gradient(circle at top left,#47ff98 0%,#0383ce 100%)',
-  orangePink: {
-    backgroundImage: 'radial-gradient(circle at top left,#47ff98 0%,#0383ce 100%)',
+  blackBlue: `radial-gradient(circle at top left,#000 0%,${color.primaryBlue} 100%)`,
+  blueBlack: `radial-gradient(circle at top left,${color.primaryBlue} 0%,#000 100%)`,
+  blueGreenBase: `radial-gradient(circle at top left,${color.primaryBlue} 0%,${color.primaryGreen} 100%)`,
+  blueGreen: {
+    backgroundImage: `radial-gradient(circle at top left,${color.primaryBlue} 0%,${color.primaryGreen} 100%)`,
     backgroundColor: '#ffffff60',
-    transitions: 'background .5s ease-out'
+    transitions: 'background .5s ease-out',
+    backgroundSize: '120%'
   },
-  orangePinkActive: {
-    backgroundImage: 'radial-gradient(circle at top left,#47ff9875 0%,#0383ce75 100%)',
+  blueGreenActive: {
+    backgroundImage: `radial-gradient(circle at top left,${color.primaryBlue}75 0%,${color.primaryGreen}75 100%)`,
     backgroundColor: color.white,
   },
-  orangePinkDisabled: {
-    backgroundImage: 'radial-gradient(circle at top left,#47ff9875 0%,#0383ce75 100%)',
+  blueGreenDisabled: {
+    backgroundImage: `radial-gradient(circle at top left,${color.primaryBlue}75 0%,${color.primaryGreen}75 100%)`,
     backgroundColor: color.grey,
     color: color.grey
   },
   oranagePinkHover: {
-    backgroundImage: 'radial-gradient(circle at top left,#47ff9875 0%,#0383ce75 100%)',
+    backgroundImage: `radial-gradient(circle at top left,${color.primaryBlue}75 0%,${color.primaryGreen}75 100%)`,
     backgroundColor: color.white,
   }
 }
@@ -72,9 +80,9 @@ export const colorForTag = (color: Colors) => ({
 const theme = createMuiTheme({
   palette: {
     primary: {
-      light: color.lightPink,
-      main: color.primaryPink,
-      dark: color.darkPink,
+      light: color.lightBlue,
+      main: color.primaryBlue,
+      dark: color.darkBlue,
       contrastText: color.white,
     },
     text: {
@@ -98,7 +106,7 @@ const theme = createMuiTheme({
         color: color.white
       }
     },
-    MuiDrawer: {paper: {backgroundImage: gradients.pinkBlack}}
+    MuiDrawer: {paper: {backgroundImage: gradients.blueBlack}}
   }
 });
 

@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme: Theme) =>
       ...theme.mixins.toolbar,
     },
     toolbarHeader: {
-      backgroundColor: color.primaryPink,
+      backgroundColor: color.lightPurple,
       display: 'grid',
       gridTemplateColumns: '1fr 2fr 1fr',
       gridTemplateRows: 'auto',
@@ -107,11 +107,11 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: 0,
     },
     contentBackground: {
-      backgroundImage: gradients.blackPink,
+      backgroundImage: gradients.blackBlue,
       height: '100%',
     },
     navDrawer: {
-      backgroundImage: gradients.blackPink
+      backgroundImage: gradients.blackBlue
     }
   }),
 )

@@ -30,7 +30,7 @@ const useStyles = makeStyles(() =>
     },
     primaryButton: buttonPrimary,
     popover: {
-      backgroundImage: gradients.blackPink
+      backgroundImage: gradients.blackBlue
     }
   })
 );
