@@ -11,7 +11,8 @@ import { goTo } from '../hooks/utils';
 const useStyles = makeStyles((theme) => ({
   main: {
     textAlign: 'center',
-    background: 'url(imgs/heros/landing-photo.jpg)',
+    background: 'url(imgs/heros/woman.jpg)',
+    boxShadow: 'inset 0 0 0 1000px rgba(0,0,0,.6)',
     paddingTop: '150px',
     paddingBottom: '150px',
     backgroundSize: 'cover',
@@ -23,6 +24,10 @@ const useStyles = makeStyles((theme) => ({
   heading: {
     ...headingOne,
     marginBottom: '4rem'
+  },
+  description: {
+    ...headingThree,
+    padding: '2rem'
   },
   primaryButton: buttonPrimary,
 
@@ -58,36 +63,13 @@ const LandingPage: React.FunctionComponent = () => {
 
   return (
     <SidebarLayout noPadding includeWindowHeightContainer allowOverflow>
-
       <div className={classes.main}>
-        <h1 className={classes.heading}>Welcome to the Future of Adult Entertainment</h1>
+        <h1 className={classes.heading}>Welcome to MindMinder</h1>
+        <h3 className={classes.description}>Mind Minder exists as a place to help you with your mental health. Anxiety flairing up? Check our list of mental dilusions which may be causing you grief. We give you a place to track when you think these thoughts. Later, we'll give you a calendar so you can seek patterns within the chaos of your mind.</h3>
         <div className={classes.buttonContainer} style={{ marginBottom: '3rem' }}>
-          <Button variant="contained" className={classes.primaryButton} onClick={goToSignup}>Model SignUp</Button>
-          <Button variant="contained" className={classes.primaryButton} onClick={goToSignup}>Fan Signup</Button>
-          <Button variant="contained" className={classes.primaryButton} target="_blank" href="https://app.uniswap.org/#/swap?outputCurrency=0xd6327ce1fb9d6020e8c2c0e124a1ec23dcab7536">Buy CumInu</Button>
+          <Button variant="contained" className={classes.primaryButton} onClick={goToSignup}>SignUp</Button>
         </div>
-        <div className={classes.buttonContainer}>
-          <div className={classes.iconBox}>
-            <img src="imgs/icons/stream.png"></img>
-            <h3 className={classes.h3}>Live Streaming</h3>
-          </div>
-          <div className={classes.iconBox}>
-            <img src="imgs/icons/tip.png"></img>
-            <h3 className={classes.h3}>Anonymous Tipping</h3>
-          </div>
-          <div className={classes.iconBox}>
-            <img src="imgs/icons/mobile_pay.png"></img>
-            <h3 className={classes.h3}>Instant Payments</h3>
-          </div>
-          <div className={classes.iconBox}>
-            <img src="imgs/icons/group.png"></img>
-            <h3 className={classes.h3}>Huge Community Events</h3>
-          </div>
-
-        </div>
-
       </div>
-
     </SidebarLayout>
 
   )

@@ -13,7 +13,8 @@ const buttonBase = {
   alignItems: 'center',
   border: 'none',
   cursor: 'pointer',
-  justifyContent: 'center'
+  justifyContent: 'center',
+  // transition: 'background 1s ease-out'
 };
 
 const largeButton = {
@@ -29,19 +30,22 @@ export const buttonPrimary = {
   ...buttonBase,
   ...largeButton,
   backgroundColor: color.transparent,
-  backgroundImage: gradients.orangePink,
+  ...gradients.orangePink,
+  // backgroundPosition: "center center",
+  // backgroundSize: "200% 200%",
   color: color.white,
-  $nest: {
-    '&:hover': {
-      backgroundColor: gradients.oranagePinkHover
-    },
-    '&&:active': {
-      backgroundColor: gradients.orangePinkActive
-    },
-    '&&&:disabled': {
-      backgroundColor: gradients.orangePinkDisabled,
-      cursor: 'default'
-    }
+  '&:hover': {
+    // backgroundPosition: "top",
+    ...gradients.orangePinkActive,
+    // backgroundSize: "200% 200%",
+    backgroundColor: color.white,
+    // boxShadow: 'inset 0 0 0 1000px rgba(255,255,255,.6)',
+  },
+  '&:active': {
+    ...gradients.orangePinkActive,
+  },
+  '&:disabled': {
+    ...gradients.orangePinkDisabled,
   }
 };
 
@@ -52,15 +56,13 @@ export const buttonSecondary = {
   color: color.white,
   $nest: {
     '&:hover': {
-      backgroundColor: gradients.oranagePinkHover
+      ...gradients.oranagePinkHover
     },
-    '&&:active': {
-      backgroundColor: gradients.orangePinkActive
+    '&:active': {
+      ...gradients.orangePinkActive
     },
-    '&&&:disabled': {
-      backgroundColor: gradients.orangePinkDisabled,
-      cursor: 'default',
-      border: 'none'
+    '&:disabled': {
+     ...gradients.orangePinkDisabled,
     }
   }
 };
@@ -75,10 +77,10 @@ export const buttonText = {
     '&:hover': {
       color: ButtonColor.hoverBlue
     },
-    '&&:active': {
+    '&:active': {
       color: ButtonColor.activeBlue
     },
-    '&&&:disabled': {
+    '&:disabled': {
       color: color.grey,
       opacity: 0.5,
       cursor: 'default'
@@ -96,10 +98,10 @@ export const buttonSubtleText = {
     '&:hover': {
       opacity: 0.8
     },
-    '&&:active': {
+    '&:active': {
       color: color.grey
     },
-    '&&&:disabled': {
+    '&:disabled': {
       color: color.grey,
       opacity: 0.5,
       cursor: 'default'

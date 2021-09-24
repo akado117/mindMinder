@@ -1,5 +1,6 @@
-import { color as makeColor } from 'csx';
+import { color as makeColor, background } from 'csx';
 import createMuiTheme from '@material-ui/core/styles/createTheme';
+import transitions from '@material-ui/core/styles/transitions';
 
 export const fade = (color: string, fadeTo: number) => makeColor(color).fade(fadeTo).toString();
 
@@ -16,10 +17,25 @@ export const color = {
 export const gradients = {
   blackPink: 'radial-gradient(circle at top left,#000 0%,#d6008f 100%)',
   pinkBlack: 'radial-gradient(circle at top left,#d6008f 0%,#000 100%)',
-  orangePink: 'radial-gradient(circle at top left,#ff6647 0%,#d6008f 100%)',
-  orangePinkActive: 'radial-gradient(circle at top center,#ff6647 0%,#d6008f 100%)',
-  orangePinkDisabled: 'radial-gradient(circle at top left,#9c3b7c 0%,#d6008f 100%)',
-  oranagePinkHover: 'radial-gradient(circle at top left,#ff340b 0%,#e8049d 100%)'
+  orangePinkBase: 'radial-gradient(circle at top left,#47ff98 0%,#0383ce 100%)',
+  orangePink: {
+    backgroundImage: 'radial-gradient(circle at top left,#47ff98 0%,#0383ce 100%)',
+    backgroundColor: '#ffffff60',
+    transitions: 'background .5s ease-out'
+  },
+  orangePinkActive: {
+    backgroundImage: 'radial-gradient(circle at top left,#47ff9875 0%,#0383ce75 100%)',
+    backgroundColor: color.white,
+  },
+  orangePinkDisabled: {
+    backgroundImage: 'radial-gradient(circle at top left,#47ff9875 0%,#0383ce75 100%)',
+    backgroundColor: color.grey,
+    color: color.grey
+  },
+  oranagePinkHover: {
+    backgroundImage: 'radial-gradient(circle at top left,#47ff9875 0%,#0383ce75 100%)',
+    backgroundColor: color.white,
+  }
 }
 
 export const color2 = {
