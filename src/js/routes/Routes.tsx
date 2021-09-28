@@ -9,12 +9,14 @@ import LandingPage from '../pages/Landing'
 import Rick from '../pages/Rick'
 import Swap from '../pages/Swap'
 import SidebarLayout from '../layout/SidebarLayout'
+import Distortions from '../pages/Distortions'
 
 
 const Routes: FunctionComponent = () => {
   return (
     <Switch>
       <Route exact path={path.home} component={LandingPage} />
+      <Route exact path={path.test} component={Distortions} />
       <AuthRoute exact path={path.login} component={Login} />
       <AuthRoute exact path={path.signup} component={() => <Login type="signup"/>} />
       <AppRoute exact path={path.home} component={() => <div></div>} />

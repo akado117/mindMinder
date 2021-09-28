@@ -53,7 +53,7 @@ export const headingFive = {
 export const paragraph = {
   ...textBase,
   // fontFamily: 'Inter UI, sans-serif',
-  fontSize: 17,
+  fontSize: 14,
   lineHeight: 1.29
 };
 

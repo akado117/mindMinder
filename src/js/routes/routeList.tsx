@@ -6,6 +6,7 @@ export const path = {
   login: '/login',
   rick: '/rick',
   swap: '/swap',
+  test: '/test',
   signup: '/signup',
   profile: '/profile'
 };

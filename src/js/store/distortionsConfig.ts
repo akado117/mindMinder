@@ -1,4 +1,4 @@
-type Distortions = [
+export type Distortions = [
   'filtering',
   'blackAndWhite',
   'overgeneralization',
@@ -44,7 +44,7 @@ export const distortionTitles: DistortionMap = {
   overgeneralization: 'Overgeneralization',
   fortuneTelling: 'Jumping to Conclusions, Mind Reading, or Fortune Telling',
   catastrophy: 'Catastrophizing, Magnification, and Minimization',
-  personalization: 'Personalization'
+  personalization: 'Personalization',
   control: 'Control Fallacies',
   fairness: 'Fallacy of Fairness',
   blaming: 'Blaming',
@@ -62,7 +62,7 @@ export const distortionDescriptors: DistortionMap = {
   overgeneralization: 'In this cognitive distortion, a person comes to a general conclusion based on a single incident or a single piece of evidence. If something bad happens just once, they expect it to happen over and over again. A person may see a single, unpleasant event as part of a never-ending pattern of defeat.',
   fortuneTelling: 'Without individuals saying so, a person who jumps to conclusions knows what another person is feeling and thinking — and exactly why they act the way they do. In particular, a person is able to determine how others are feeling toward the person, as though they could read their mind. Jumping to conclusions can also manifest itself as fortune-telling, where a person believes their entire future is pre-ordained (whether it be in school, work, or romantic relationships).',
   catastrophy: 'When a person engages in catastrophizing, they expect disaster to strike, no matter what. This is also referred to as magnifying, and can also come out in its opposite behavior, minimizing. In this distortion, a person hears about a problem and uses what if questions (e.g., “What if tragedy strikes?” “What if it happens to me?”) to imagine the absolute worst occurring.',
-  personalization: 'Personalization is a distortion where a person believes that everything others do or say is some kind of direct, personal reaction to them. They literally take virtually everything personally, even when something is not meant in that way. A person who experiences this kind of thinking will also compare themselves to others, trying to determine who is smarter, better looking, etc.'
+  personalization: 'Personalization is a distortion where a person believes that everything others do or say is some kind of direct, personal reaction to them. They literally take virtually everything personally, even when something is not meant in that way. A person who experiences this kind of thinking will also compare themselves to others, trying to determine who is smarter, better looking, etc.',
   control: `This distortion involves two different but related beliefs about being in complete control of every situation in a person’s life. In the first, if we feel externally controlled, we see ourselves as helpless a victim of fate. For example, “I can’t help it if the quality of the work is poor, my boss demanded I work overtime on it.” 
   The fallacy of internal control has us assuming responsibility for the pain and happiness of everyone around us. For example, “Why aren’t you happy? Is it because of something I did?”`,
   fairness: 'In the fallacy of fairness, a person feels resentful because they think that they know what is fair, but other people won’t agree with them. As our parents tell us when we’re growing up and something doesn’t go our way, “Life isn’t always fair.” People who go through life applying a measuring ruler against every situation judging its “fairness” will often feel resentful, angry, and even hopelessness because of it. Because life isn’t fair — things will not always work out in a person’s favor, even when they should.',
