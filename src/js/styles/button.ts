@@ -29,7 +29,6 @@ const largeButton = {
 export const buttonPrimary = {
   ...buttonBase,
   ...largeButton,
-  backgroundColor: color.transparent,
   ...gradients.blueGreen,
   // backgroundPosition: "center center",
   // backgroundSize: "200% 200%",

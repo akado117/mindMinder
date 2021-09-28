@@ -11,6 +11,7 @@ import Slide from '@material-ui/core/Slide';
 import { color, gradients } from '../styles/theme'
 import { goTo } from '../hooks/utils'
 import AvatarMenu from '../components/AvatarMenu'
+import Avatar from '@material-ui/core/Avatar';
 import WindowHeightContainer from './WindowHeightContainer'
 import { DrawerNav, HorizontalNav } from './Nav'
 
@@ -67,7 +68,7 @@ const useStyles = makeStyles((theme: Theme) =>
       ...theme.mixins.toolbar,
     },
     toolbarHeader: {
-      backgroundColor: color.lightPurple,
+      backgroundColor: color.primaryBlue,
       display: 'grid',
       gridTemplateColumns: '1fr 2fr 1fr',
       gridTemplateRows: 'auto',
@@ -112,6 +113,11 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     navDrawer: {
       backgroundImage: gradients.blackBlue
+    },
+    avatar: {
+      width: '54px',
+      height: '54px',
+      backgroundColor: color.primaryPurple
     }
   }),
 )
@@ -174,10 +180,12 @@ const SidebarLayout = (props: SidebarProps) => {
         </button>
       </div>
       <div onClick={goHome} className={`${classes.hideSmall} ${classes.toolbarLeft}`}>
-        <img src="/imgs/logo_plain.png" alt="logo_header" className={classes.appBarHeaderLogo} />
+        <Avatar className={classes.avatar}>MM</Avatar>
+        {/* <img src="/imgs/logo_plain.png" alt="logo_header" className={classes.appBarHeaderLogo} /> */}
       </div>
       <div onClick={goHome} className={`${classes.hideBeyondSmall} ${classes.toolbarMiddle}`}>
-        <img src="/imgs/logo_plain.png" alt="logo_header" className={classes.appBarHeaderLogo} />
+        <Avatar className={classes.avatar}>MM</Avatar>
+        {/* <img src="/imgs/logo_plain.png" alt="logo_header" className={classes.appBarHeaderLogo} /> */}
       </div>
       <div className={`${classes.hideSmall} ${classes.toolbarMiddle}`}>
         <HorizontalNav />
