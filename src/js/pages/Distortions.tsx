@@ -8,10 +8,19 @@ import SidebarLayout from '../layout/SidebarLayout'
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      display: 'flex',
-      flexWrap: 'wrap',
+      paddingTop: '2rem',
+      paddingBottom: '2rem',
+      display: 'grid',
+      gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+      columnGap: '1rem',
+      rowGap: '2rem',
       justifyContent: 'center',
-      alignItems: 'center'
+      [theme.breakpoints.between('xs','sm')]: {
+        gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+      },
+      [theme.breakpoints.down('xs')]: {
+        gridTemplateColumns: 'repeat(1, minmax(0, max-content))',
+      }
     },
   }),
 );
@@ -26,7 +35,7 @@ export default function Distortions() {
   return (
     <SidebarLayout noPadding includeWindowHeightContainer allowOverflow>
       <Container className={classes.root}>
-        {distortions.map(distortion => <DistortionCard distortionType={distortion} key={distortion} />)}
+        {distortions.map(distortion => <div><DistortionCard distortionType={distortion} key={distortion} /></div>)}
       </Container>
     </SidebarLayout>
   )

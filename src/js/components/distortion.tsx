@@ -16,7 +16,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { distortionTitles, distortionDescriptors, distortionImages, Distortions} from '../store/distortionsConfig'
 import { headingTwo, paragraph } from '../styles/typography';
 import { color } from '../styles/theme';
-import { fontSize } from '@material-ui/system';
+import { fontSize, minHeight, textAlign } from '@material-ui/system';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -45,7 +45,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     titleText: {
       ...headingTwo,
-      color: color.darkBlue
+      color: color.darkBlue,
+      '& div': {
+        minHeight: '7rem',
+      }
     },
     description: {
       ...paragraph,
