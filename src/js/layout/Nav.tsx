@@ -50,32 +50,32 @@ type MapKeys =  'home' | 'live' | 'messages' |'explore' |'auction' |'goLive' |'b
 
 const labels: { [key in MapKeys]: string } = {
   home: 'Home',
-  live: 'Live Now',
-  messages: 'Messages',
-  explore: 'Explore',
-  auction: 'Auctions',
-  goLive: 'Go Live!',
-  buy: 'Buy, Swap, Bridge'
+  // live: 'Live Now',
+  // messages: 'Messages',
+  explore: 'Common Distortions',
+  // auction: 'Auctions',
+  // goLive: 'Go Live!',
+  buy: 'Troll lololoool'
 }
 
 const icons: { [key in MapKeys]: ReactNode } = {
   home: <HomeOutlinedIcon fontSize="large"/>,
-  live: <SettingsInputAntennaIcon fontSize="large" />,
-  messages: <PeopleIcon fontSize="large" />,
+  // live: <SettingsInputAntennaIcon fontSize="large" />,
+  // messages: <PeopleIcon fontSize="large" />,
   explore: <FavoriteIcon fontSize="large" />,
-  auction: <GavelIcon fontSize="large" />,
-  goLive: <LiveTvIcon fontSize="large" />,
+  // auction: <GavelIcon fontSize="large" />,
+  // goLive: <LiveTvIcon fontSize="large" />,
   buy: <MonetizationOnIcon fontSize="large" />
 }
 
 const pathMap: { [key in MapKeys]: string } = {
   home: path.home ,
-  live: path.rick ,
-  messages: path.rick,
-  explore: path.rick,
-  auction: path.rick,
-  goLive: path.rick,
-  buy: path.swap
+  // live: path.rick ,
+  // messages: path.rick,
+  explore: path.distortions,
+  // auction: path.rick,
+  // goLive: path.rick,
+  buy: path.rick
 }
 
 const keys = Object.keys(labels) as Array<MapKeys>

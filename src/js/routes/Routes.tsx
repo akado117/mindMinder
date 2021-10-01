@@ -16,7 +16,7 @@ const Routes: FunctionComponent = () => {
   return (
     <Switch>
       <Route exact path={path.home} component={LandingPage} />
-      <Route exact path={path.test} component={Distortions} />
+      <Route exact path={path.distortions} component={Distortions} />
       <AuthRoute exact path={path.login} component={Login} />
       <AuthRoute exact path={path.signup} component={() => <Login type="signup"/>} />
       <AppRoute exact path={path.home} component={() => <div></div>} />
