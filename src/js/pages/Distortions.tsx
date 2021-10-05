@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const distortions = Object.keys(distortionImages)
 
-export default function Distortions() {
+export default function DistortionsPage() {
 
   const theme = useTheme();
   const classes = useStyles(theme);
