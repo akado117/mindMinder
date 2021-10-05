@@ -1,23 +1,21 @@
-export type Distortions = [
-  'filtering',
-  'blackAndWhite',
-  'overgeneralization',
-  'fortuneTelling',
-  'catastrophy',
-  'personalization',
-  'control',
-  'fairness',
-  'blaming',
-  'shoulds',
-  'emotionalReasoning',
-  'falacyOfChange',
-  'globalLabeling',
-  'alwaysRight',
-  'heavensReward'
-]
+export type Distortions = 'filtering' | 'blackAndWhite' | 'overgeneralization' | 'fortuneTelling' | 'catastrophy' | 'personalization' | 'control' | 'fairness' | 'blaming' | 'shoulds' | 'emotionalReasoning' | 'falacyOfChange' | 'globalLabeling' | 'alwaysRight' | 'heavensReward'
 
-interface DistortionMap {
-  [distortion: Distortions]: string;
+export interface DistortionMap {
+  'filtering': string;
+  'blackAndWhite': string;
+  'overgeneralization': string;
+  'fortuneTelling': string;
+  'catastrophy': string;
+  'personalization': string;
+  'control': string;
+  'fairness': string;
+  'blaming': string;
+  'shoulds': string;
+  'emotionalReasoning': string;
+  'falacyOfChange': string;
+  'globalLabeling': string;
+  'alwaysRight': string;
+  'heavensReward': string;
 }
 
 export const distortionImages: DistortionMap = {

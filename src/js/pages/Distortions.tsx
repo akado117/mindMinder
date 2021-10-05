@@ -1,7 +1,7 @@
 import React from 'react'
 import Container from '@material-ui/core/Container'
 import { makeStyles, Theme, createStyles, useTheme } from '@material-ui/core/styles';
-import { distortionImages } from '../store/distortionsConfig'
+import { distortionImages, Distortions } from '../store/distortionsConfig'
 import DistortionCard from '../components/distortion'
 import SidebarLayout from '../layout/SidebarLayout'
 
@@ -35,7 +35,7 @@ export default function Distortions() {
   return (
     <SidebarLayout noPadding includeWindowHeightContainer allowOverflow>
       <Container className={classes.root}>
-        {distortions.map(distortion => <div><DistortionCard distortionType={distortion} key={distortion} /></div>)}
+        {distortions.map(distortion => <div><DistortionCard distortionType={distortion as Distortions} key={distortion as Distortions} /></div>)}
       </Container>
     </SidebarLayout>
   )

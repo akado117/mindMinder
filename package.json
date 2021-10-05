@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build --emptyOutDir",
     "deploy": "firebase deploy",
     "serve": "vite preview",
     "lint": "yarn eslint 'src/**/*.{ts,tsx}'",

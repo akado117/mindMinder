@@ -46,7 +46,8 @@ function handleDrawerClasses(key: Path, classes: ReturnType<typeof useStyles>, c
   return key === currentPath ? `${classes.drawerActive}` : classes.drawer
 }
 
-type MapKeys =  'home' | 'live' | 'messages' |'explore' |'auction' |'goLive' |'buy'
+// type MapKeys =  'home' | 'live' | 'messages' |'explore' |'auction' |'goLive' |'buy'
+type MapKeys =  'home' |'explore' |'buy'
 
 const labels: { [key in MapKeys]: string } = {
   home: 'Home',
