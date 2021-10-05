@@ -1,13 +1,15 @@
-const marketCapDom = document.querySelector("#market_cap");
-const priceDom = document.querySelector("#price");
-const holdersDom = document.querySelector("#total_holders");
-const totalSupplyDom = document.querySelector("#total_supply");
-const totalBurnedDom = document.querySelector("#total_burned");
-const swapBtnDom = document.querySelectorAll(".swap-btn");
-const platform = document.querySelectorAll(".goToPlatform");
-const preRegBtn = document.querySelectorAll(".creatorprereg");
-const closeFormBtn = document.querySelector("#closenowform");
-const formPopup = document.querySelector("#formpopup");
+const elements = {
+  marketCapDom: null,
+  priceDom: null,
+  holdersDom: null,
+  totalSupplyDom: null,
+  totalBurnedDom: null,
+  swapBtnDom: null,
+  platform: null,
+  preRegBtn: null,
+  closeFormBtn: null,
+  formPopup: null,
+}
 
 // swapBtnDom.forEach((item) => {
 //   item.addEventListener("click", (e) => {
@@ -23,7 +25,24 @@ const formPopup = document.querySelector("#formpopup");
 //   });
 // });
 
-const getLiveData = async () => {
+// setFeedElements()
+// setupFeedElements()
+// getLiveData()
+
+window.setFeedElements = () => {
+  elements.marketCapDom = document.querySelector("#market_cap");
+  elements.priceDom = document.querySelector("#price");
+  elements.holdersDom = document.querySelector("#total_holders");
+  elements.totalSupplyDom = document.querySelector("#total_supply");
+  elements.totalBurnedDom = document.querySelector("#total_burned");
+  elements.swapBtnDom = document.querySelectorAll(".swap-btn");
+  elements.preRegBtn = document.querySelectorAll(".creatorprereg");
+  elements.platform = document.querySelectorAll(".goToPlatform");
+  elements.closeFormBtn = document.querySelector("#closenowform");
+  elements.formPopup = document.querySelector("#formpopup");
+}
+
+window.getLiveData = async () => {
   try {
     fetchData();
 
@@ -37,7 +56,6 @@ const getLiveData = async () => {
 };
 const addressChecksummed = "0x7b412f141996411401f57e2ba1bc2235af807d4d";
 
-getLiveData();
 
 async function fetchData() {
   fetch("https://prices-cuminu.herokuapp.com/api/coinData")
@@ -57,10 +75,10 @@ async function fetchData() {
       dailyVolume = formatPrice(dailyVolume);
       totalSupply = formatPrice(totalSupply);
       holders = "4,036";
-      marketCapDom.textContent = `$${marketCap}`;
-      totalSupplyDom.textContent = totalSupply;
-      priceDom.textContent = `$${price.toFixed(6)}`;
-      holdersDom.textContent = holders;
+      elements.marketCapDom.textContent = `$${marketCap}`;
+      elements.totalSupplyDom.textContent = totalSupply;
+      elements.marketCapDom.textContent = `$${price.toFixed(6)}`;
+      elements.holdersDom.textContent = holders;
       console.log(
         marketCap,
         price,
@@ -108,49 +126,51 @@ function formatPrice(price) {
   return priceString;
 }
 
-// Adding Listener for toast notificaton
-platform.forEach((item) => {
-  item.addEventListener("click", (e) => {
-    e.preventDefault();
-    Toastify({
-      text: "Under Construction",
-      duration: 3000,
+window.setupFeedElements = () => {
+  // Adding Listener for toast notificaton
+  elements.platform.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      e.preventDefault();
+      Toastify({
+        text: "Under Construction",
+        duration: 3000,
 
-      newWindow: true,
-      close: true,
-      gravity: "top", // `top` or `bottom`
-      position: "center", // `left`, `center` or `right`
-      backgroundColor: "grey",
-      color: "black",
-      stopOnFocus: true, // Prevents dismissing of toast on hover
-      onClick: function () {}, // Callback after click
-    }).showToast();
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "center", // `left`, `center` or `right`
+        backgroundColor: "grey",
+        color: "black",
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        onClick: function () {}, // Callback after click
+      }).showToast();
+    });
   });
-});
 
-//
+  //
 
-let formShown = false;
+  let formShown = false;
 
-preRegBtn.forEach((item) => {
-  item.addEventListener("click", (e) => {
-    // e.preventDefault();
+  elements.preRegBtn.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      // e.preventDefault();
 
-    if (!formShown) {
-      formPopup.style.display = "block";
-      formShown = true;
-    } else {
-      formPopup.style.display = "none";
+      if (!formShown) {
+        elements.formPopup.style.display = "block";
+        formShown = true;
+      } else {
+        elements.formPopup.style.display = "none";
+        formShown = false;
+      }
+    });
+  });
+
+  elements.closeFormBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    if (formShown) {
+      elements.formPopup.style.display = "none";
       formShown = false;
     }
   });
-});
-
-closeFormBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-
-  if (formShown) {
-    formPopup.style.display = "none";
-    formShown = false;
-  }
-});
+}
