@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build --emptyOutDir",
     "serve": "vite preview",
     "lint": "yarn eslint 'src/**/*.{ts,tsx}'",
     "format": "yarn prettier --write 'src/**/*.{ts,tsx}'",
