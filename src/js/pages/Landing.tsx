@@ -8,7 +8,6 @@ import SidebarLayout from '../layout/SidebarLayout';
 import { goTo } from '../hooks/utils';
 import { color } from '../styles/theme';
 
-
 const useStyles = makeStyles((theme) => ({
   main: {
     textAlign: 'center',
@@ -74,6 +73,13 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
+declare global {
+  interface Window {
+    setFeedElements(): void;
+    setupFeedElements(): void;
+    getLiveData(): void;
+  }
+}
 
 const LandingPage: React.FunctionComponent = () => {
   const classes = useStyles()
@@ -742,10 +748,10 @@ const LandingPage: React.FunctionComponent = () => {
               <h2>Social Media</h2>
               <p>For the latest updates on all things CUMINU. Never miss a beat again.</p>
               <ul>
-                <li><img class="socials" src="img/telegram.png" /> <span><a href="https://t.me/CumInuToken"
+                <li><img className="socials" src="img/telegram.png" /> <span><a href="https://t.me/CumInuToken"
                       target="_blank">Visit CUMINU Telegram</a></span></li>
 
-                <li><img class="socials" src="img/twitter.png" /> <span><a href="https://twitter.com/CumInuToken"
+                <li><img className="socials" src="img/twitter.png" /> <span><a href="https://twitter.com/CumInuToken"
                       target="_blank">Visit CUMINU Twitter</a></span></li>
 
               </ul>
@@ -758,16 +764,16 @@ const LandingPage: React.FunctionComponent = () => {
         <div id="fixedsocialmedia">
           <ul id="customfontsharefixed">
             <li><a id="telegramcstma" href="https://t.me/CumInuToken" target="_blank"><i
-                  class="fab fa-telegram-plane"></i></a></li>
+                  className="fab fa-telegram-plane"></i></a></li>
 
-            <li><a id="twittercstma" href="https://twitter.com/CumInuToken" target="_blank"><i class="fab fa-twitter"></i></a>
+            <li><a id="twittercstma" href="https://twitter.com/CumInuToken" target="_blank"><i className="fab fa-twitter"></i></a>
             </li>
           </ul>
         </div>
 
         <div id="backtotoparea">
           <ul>
-            <li><a href="#wrapper_cuminu"><i class="fas fa-arrow-up"></i></a></li>
+            <li><a href="#wrapper_cuminu"><i className="fas fa-arrow-up"></i></a></li>
           </ul>
         </div>
       </div>
