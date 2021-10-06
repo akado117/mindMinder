@@ -6,6 +6,7 @@ import { buttonPrimary } from '../styles/button';
 import { columnStack, rowStack, center } from '../styles/layout';
 import SidebarLayout from '../layout/SidebarLayout';
 import { goTo } from '../hooks/utils';
+import { color } from '../styles/theme';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -46,6 +47,29 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     '& > img': { marginBottom: '1rem' },
     marginTop: '1rem'
+  },
+  externalButtonContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    '& > div': {
+      marginBottom: '2rem',
+      marginRight: '2rem'
+    }
+  },
+  externalLinkButtons: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: color.buttonPink,
+    borderRadius: '8px',
+    color: '#000',
+    fontFamily: 'BergenMono-Bold',
+    padding: '1rem 2rem',
+    [theme.breakpoints.down('xs')]: {
+      width: '100%'
+    },
   }
 }))
 
@@ -569,16 +593,20 @@ const LandingPage: React.FunctionComponent = () => {
                     {/* <!--end list stat--> */}
                   </div>
 
-                  <div id="buttonscentered" style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                    <a href="https://www.dextools.io/app/uniswap/pair-explorer/0x7b412f141996411401f57e2ba1bc2235af807d4d" 
-                    target="_blank" id="livechartbtn" style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                        <img src="img/chart.png" />LIVE CHART
+                  <div id="buttonscentered-1" className={classes.externalButtonContainer}>
+                    <div className={classes.externalLinkButtons} id="livechartbtn">
+                      <img src="img/chart.png" style={{marginRight: '1rem'}} />
+                      <a href="https://www.dextools.io/app/uniswap/pair-explorer/0x7b412f141996411401f57e2ba1bc2235af807d4d" 
+                        target="_blank" >LIVE CHART
                       </a>
+                    </div>
 
-                    <a href="https://etherscan.io/address/0xd6327ce1fb9D6020E8C2c0E124A1eC23DCAb7536"
-                    target="_blank" id="etherscanicn" style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                      <img src="img/etherscan.png" />ETHERSCAN
-                    </a>
+                    <div className={classes.externalLinkButtons}>
+                      <img src="img/etherscan.png" style={{marginRight: '1rem'}}/>
+                      <a href="https://www.dextools.io/app/uniswap/pair-explorer/0x7b412f141996411401f57e2ba1bc2235af807d4d" 
+                        target="_blank" >LIVE CHART
+                      </a>
+                    </div>
                   </div>
                   {/* <!--end buttons statistics--> */}
 

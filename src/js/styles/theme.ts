@@ -9,6 +9,7 @@ export const color = {
   darkPink: '#b91e74',
 
   backgroundBlack: '#161616',
+  buttonPink: '#f91382',
   offWhite: '#d8d8d8',
   white: '#FFFFFF',
   transparent: 'transparent',
