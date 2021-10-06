@@ -8,6 +8,8 @@ export const color = {
   primaryPink: '#da117f',
   darkPink: '#b91e74',
 
+  backgroundBlack: '#161616',
+
   white: '#FFFFFF',
   transparent: 'transparent',
   grey: '#333',

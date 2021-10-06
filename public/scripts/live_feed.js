@@ -77,7 +77,7 @@ async function fetchData() {
       holders = "4,036";
       elements.marketCapDom.textContent = `$${marketCap}`;
       elements.totalSupplyDom.textContent = totalSupply;
-      elements.marketCapDom.textContent = `$${price.toFixed(6)}`;
+      elements.priceDom.textContent = `$${price.toFixed(6)}`;
       elements.holdersDom.textContent = holders;
       console.log(
         marketCap,
