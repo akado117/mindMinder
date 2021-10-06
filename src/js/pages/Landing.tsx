@@ -706,21 +706,24 @@ const LandingPage: React.FunctionComponent = () => {
                     {/* <!--end list stat--> */}
                   </div>
 
-                  <div id="buttonscentered">
-                    <a href="https://www.dextools.io/app/uniswap/pair-explorer/0x7b412f141996411401f57e2ba1bc2235af807d4d"
-                      target="_blank" id="livechartbtn" style={{ alignItems: 'center'}}> <img
-                        style={{width: '40px', height: '40px', objectFit: 'contain', position: 'relative', top: '.8rem'}}
-                        src="img/chart.png" />LIVE CHART</a>
+                  <div id="buttonscentered" style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                    <a href="https://www.dextools.io/app/uniswap/pair-explorer/0x7b412f141996411401f57e2ba1bc2235af807d4d" 
+                    target="_blank" id="livechartbtn" style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                        <img src="img/chart.png" />LIVE CHART
+                      </a>
 
-                    <a href="https://etherscan.io/address/0xd6327ce1fb9D6020E8C2c0E124A1eC23DCAb7536" target="_blank"
-                      id="etherscanicn"> <img
-                        style={{width: '40px', height: '40px', objectFit: 'contain', position: 'relative', top: '.8rem'}}
-                        src="img/etherscan.png" />ETHERSCAN</a>
+                    <a href="https://etherscan.io/address/0xd6327ce1fb9D6020E8C2c0E124A1eC23DCAb7536"
+                    target="_blank" id="etherscanicn" style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                      <img src="img/etherscan.png" />ETHERSCAN
+                    </a>
                   </div>
                   {/* <!--end buttons statistics--> */}
 
                   <div id="statistics_text">
-                    <h3 id="total_burned">1 <img className="perma_burned" src="img/swap.png" /> </h3>
+                    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '2rem'}}>
+                      <h3 id="total_burned" style={{paddingBottom: 0, paddingRight: '2rem'}}>1 </h3>
+                      <img className="perma_burned" src="img/swap.png" /> 
+                    </div>
                     <h4>PERMANENTLY REMOVED</h4>
                     <p>Once our tokens are burned, they will no<br />
                       longer appear in any wallet, dead or otherwise.</p>

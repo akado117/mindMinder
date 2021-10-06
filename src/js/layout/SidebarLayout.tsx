@@ -67,10 +67,9 @@ const useStyles = makeStyles((theme: Theme) =>
       ...theme.mixins.toolbar,
     },
     toolbarHeader: {
-      backgroundColor: color.primaryPink,
-      display: 'grid',
-      gridTemplateColumns: '1fr 2fr 1fr',
-      gridTemplateRows: 'auto',
+      backgroundColor: color.backgroundBlack,
+      display: 'flex',
+      alignItems: 'space-between',
       width: '100%',
       height: '90px',
       [theme.breakpoints.down('sm')]: {
@@ -88,13 +87,18 @@ const useStyles = makeStyles((theme: Theme) =>
       gridColumn: 3,
       justifySelf: 'right'
     },
+    hideXS: {
+      [theme.breakpoints.down('xs')]: {
+        display: 'none',
+      },
+    },
     hideSmall: {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         display: 'none',
       },
     },
     hideBeyondSmall: {
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up('lg')]: {
         display: 'none',
       },
     },
@@ -168,22 +172,35 @@ const SidebarLayout = (props: SidebarProps) => {
     })}
   >
     <Toolbar className={classes.toolbarHeader}>
-      <div className={`${classes.hideBeyondSmall} ${classes.toolbarLeft}`}>
-        <button onClick={toggleDrawer(true)}>
-          <MenuIcon fontSize='large'/>
-        </button>
+      <div onClick={goHome} id="logov1" style={{paddingLeft: '1.5rem'}}>
+        <img src="/img/main.png" alt="logo_header" className="logo-update" />
       </div>
-      <div onClick={goHome} className={`${classes.hideSmall} ${classes.toolbarLeft}`}>
-        <img src="/imgs/logo_plain.png" alt="logo_header" className={classes.appBarHeaderLogo} />
-      </div>
-      <div onClick={goHome} className={`${classes.hideBeyondSmall} ${classes.toolbarMiddle}`}>
-        <img src="/imgs/logo_plain.png" alt="logo_header" className={classes.appBarHeaderLogo} />
-      </div>
-      <div className={`${classes.hideSmall} ${classes.toolbarMiddle}`}>
+      <div className={classes.hideSmall}>
         <HorizontalNav />
       </div>
-      <div className={classes.toolbarRight}>
-        <AvatarMenu />
+      <div id="buttonsrightv1" style={{paddingTop: 0}}>
+        <a className="creatorprereg" href="#hero" id="creatorpreregbtn">Creator Pre-register</a>
+        <a className={`swapBtn swap-btn ${classes.hideXS}`} target="_blank" href="swap/index.html"><svg xmlns="http://www.w3.org/2000/svg"
+            width="24.421" height="30" viewBox="0 0 24.421 30" >
+            <defs>
+              <style>
+                {
+                  `
+                .a {
+                  fill: #f8f7f7;
+                }`
+              }
+              </style>
+            </defs>
+            <path className="a"
+              d="M-177.5,142.244l.02-9.217,6.554,4.6Zm18.474-1.628-5.114,3.577-5.172-3.662-6.063,4.257,11.084,7.847,11.214-7.844Zm-5.125-9.5,5.054,3.579,6.018-4.226-11.069-7.838-11.228,7.855,6.051,4.25Z"
+              transform="translate(177.5 -122.636)" />
+          </svg>Swap</a>
+      </div>
+      <div className={`${classes.hideBeyondSmall} ${classes.toolbarRight}`}>
+        <button onClick={toggleDrawer(true)}>
+          <MenuIcon fontSize='large' style={{fontSize: '72px', color: color.offWhite, margin: '0 1rem'}}/>
+        </button>
       </div>
     </Toolbar>
   </AppBar>)
